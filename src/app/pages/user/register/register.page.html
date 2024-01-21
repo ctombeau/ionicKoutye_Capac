@@ -1,0 +1,80 @@
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-title>register</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true">
+  <ion-header collapse="condense">
+    <ion-toolbar>
+      <ion-title size="large">register</ion-title>
+    </ion-toolbar>
+  </ion-header>
+
+  <div class="container">
+    <ion-card>
+       <ion-card-header >
+          <ion-card-title color="primary" style="text-align: center;">
+            <ion-icon name="person-circle-outline"></ion-icon>
+             Nouvel utilisateur</ion-card-title> 
+      </ion-card-header>
+       <ion-card-content>
+           <form >
+              <ion-item>
+                <ion-input type="text" labelPlacement="floating" label="Nom" ></ion-input>
+              </ion-item>
+              <ion-item>
+                <ion-input type="text" labelPlacement="floating" label="Prénom" ></ion-input>
+              </ion-item>
+              <ion-item>
+                <ion-input type="text" labelPlacement="floating" label="Username" ></ion-input>
+              </ion-item>
+              <ion-item>
+                <ion-input type="email" labelPlacement="floating" label="Email" ></ion-input>
+              </ion-item>
+              <ion-item>
+                <ion-input type="password" labelPlacement="floating" label="password"></ion-input>
+              </ion-item>
+              <ion-item>
+                <ion-input type="password" labelPlacement="floating" label="confirm password" ></ion-input>
+              </ion-item>
+              <ion-item>
+                 <ion-select labelPlacement="floating" label="type user" >
+                    <ion-select-option>Courtier</ion-select-option>
+                    <ion-select-option>Locataire</ion-select-option>
+                    <ion-select-option>Proprietaire</ion-select-option>
+                 </ion-select>
+              </ion-item>
+
+              <ion-item>
+               <!--<ion-fab vertical="bottom" horizontal="center" slot="fixed"> -->
+                  <ion-label>Photo</ion-label>
+
+                  <ion-fab-button (click)="selectImageOptions()" slot="end">
+                    <!-- <ion-icon name="camera"></ion-icon> -->
+                  </ion-fab-button>
+                  <img #inputImage [src]="imgUri"/>
+              <!--  </ion-fab> -->
+              </ion-item>
+
+              
+ 
+            <!--  <ion-item>
+                <img #inputImage [src]="imgUri" width="200" height="200"/>
+                 <ion-button (click)="getCamera()">From Camera</ion-button>
+                 <ion-button (click)="getGallery()">From Gallery</ion-button>
+              </ion-item>
+            -->
+              <ion-button expand="block" color="primary" style="margin-top: 10px;">
+                <ion-icon name="add-outline"></ion-icon> 
+                Enregistrer</ion-button>
+                <ion-button expand="block" color="danger" style="margin-top: 10px;"
+                  (click)="backToLogin()"
+                >
+                <ion-icon name="arrow-back-circle-outline"></ion-icon> 
+                  Cancel</ion-button>
+           </form>
+       </ion-card-content>
+    </ion-card>
+</div>
+</ion-content>
