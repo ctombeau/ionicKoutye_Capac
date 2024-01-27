@@ -1,7 +1,7 @@
 import { Component, ElementRef, Input, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { ActionSheetController } from '@ionic/angular';
-import { Camera, CameraResultType,CameraSource, ImageOptions } from '@capacitor/camera';
+import { Camera, CameraResultType,CameraSource, GalleryImageOptions, ImageOptions } from '@capacitor/camera';
 import { CameraPreview, CameraPreviewOptions } from '@capacitor-community/camera-preview';
 
 @Component({
@@ -15,6 +15,7 @@ export class RegisterPage implements OnInit {
   imgUri : string="";
   base64?: string = "";
   cameraActive: boolean= false;
+  imgCamera: string[] = [];
   
   constructor(
     //private camera: Camera,
@@ -64,34 +65,51 @@ export class RegisterPage implements OnInit {
   
   getCamera() {
     
-    const options: CameraPreviewOptions = {
-      position: 'rear',
-      parent: 'cameraPreview',
-      className: 'cameraPreview'
+    
+    const options: ImageOptions = {
+      quality: 100,
+      resultType: CameraResultType.DataUrl
       
     }
-    CameraPreview.start(options);
-    this.cameraActive = true;
-    /*
-    this.camera.getPicture(options).then((imageData) => {
-      this.imgUri = 'data:image/jpeg;base64,' + imageData;
-    }, (err) => {
-      // Handle error
-      console.log("Camera issue:" + err);
-    });
-    */
+    // CameraPreview.start(options);
+    // this.cameraActive = true;
+    Camera.getPhoto(options).then((result?)=>{
+      if(result !=null)
+      {
+        this.imgCamera.push(result.dataUrl?? "");
+        console.log(this.base64);
+      }
+      else
+      {
+
+      }
+  },
+  (error)=>{
+       alert(error);
+  });
+
   }
 
 
 
   getGallery()
   {
-    var options : ImageOptions={
-       source: CameraSource.Photos,
-       resultType: CameraResultType.DataUrl
+    var options : GalleryImageOptions={
+       //source: CameraSource.Photos,
+       //resultType: CameraResultType.DataUrl,
+       correctOrientation: true
+       
     }
-    Camera.getPhoto(options).then((result)=>{
-        this.base64 =result.dataUrl;
+    Camera.pickImages(options).then((result)=>{
+        if(result !=null)
+        {
+          var images =result.photos;
+          console.log(images);
+        }
+        else
+        {
+
+        }
     },
     (error)=>{
          alert(error);
