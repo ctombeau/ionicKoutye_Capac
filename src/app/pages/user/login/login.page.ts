@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { Element } from '@angular/compiler';
+import { AfterViewInit, Component, ElementRef, Input, OnInit, ViewChild } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { Router } from '@angular/router';
 import { UserLogin } from 'src/app/model/user-login';
@@ -10,11 +11,13 @@ import { UserService } from 'src/app/services/user.service';
   templateUrl: './login.page.html',
   styleUrls: ['./login.page.scss'],
 })
-export class LoginPage implements OnInit {
+export class LoginPage implements OnInit, AfterViewInit {
 
   message : string = "";
   userInfoToken : any ="";
-  
+  showPsw: boolean = false;
+  @ViewChild('inputPassword',{ static: false }) inputPassword? : ElementRef<HTMLElement> ;
+
 
   constructor(
     private router : Router,
@@ -23,6 +26,10 @@ export class LoginPage implements OnInit {
 
   ngOnInit() {
     
+  }
+
+  ngAfterViewInit(): void {
+      
   }
 
    public Register() : void
@@ -52,5 +59,19 @@ export class LoginPage implements OnInit {
         );
        }
        
+   }
+
+   showPassword(input : any)
+   {
+       if(this.showPsw==false)
+       {
+          this.showPsw =true;
+          input.type="text";
+       }
+       else if(this.showPsw==true)
+       {
+          this.showPsw=false;
+          input.type="password"
+       }
    }
 }
