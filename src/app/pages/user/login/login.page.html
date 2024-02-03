@@ -30,7 +30,7 @@
   
           <ion-item>
             <ion-input #inputPassword type="password" name="password" label="Password" labelPlacement="floating" placeholder="Votre mot de passe" ngModel></ion-input>
-            <ion-button slot="end" fill="clear" (click)="showPassword(inputPassword)">
+            <ion-button slot="end" fill="clear" (click)="showPassword(inputPassword)" id="button-icon">
               <ion-icon *ngIf="showPsw==true"  name="eye-outline" color="primary" class="iconEye"></ion-icon>
               <ion-icon *ngIf="showPsw==false" name="eye-off-outline" color="primary" class="iconEye"></ion-icon>
             </ion-button>

@@ -78,6 +78,10 @@ ion-content {
     //vertical-align: middle;
 }
 
+#button-icon
+{
+   margin-left: -10px;
+}
 
 ion-item {
     margin-bottom: 10px;
@@ -87,4 +91,11 @@ ion-item {
     --highlight-color-valid: #00008B;
     --highlight-color-focused: #00008B;
     --highlight-color-invalid: #00008B;
+}
+
+@media screen and (max-width: 312px) {
+  #button-icon
+  {
+     margin-left: -50px;
+  }
 }
