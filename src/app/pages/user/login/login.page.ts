@@ -16,9 +16,7 @@ export class LoginPage implements OnInit, AfterViewInit {
   message : string = "";
   userInfoToken : any ="";
   showPsw: boolean = false;
-  @ViewChild('inputPassword',{ static: false }) inputPassword? : ElementRef<HTMLElement> ;
-
-
+ 
   constructor(
     private router : Router,
     private userService: UserService,
