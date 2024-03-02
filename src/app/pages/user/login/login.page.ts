@@ -38,7 +38,7 @@ export class LoginPage implements OnInit, AfterViewInit {
    public Login(form : NgForm)
    {
        var user = new UserLogin(form.value.username, form.value.password);
-       
+       /*
        if(user.username == "" || user.password=="")
        {
           this.message ="Les champs sont obligatoires";
@@ -56,7 +56,8 @@ export class LoginPage implements OnInit, AfterViewInit {
           }
         );
        }
-       
+       */
+       this.router.navigate(['home']);
    }
 
    showPassword(input : any)

@@ -20,7 +20,10 @@
         </ion-card-header>
       
         <ion-card-content>
-          <img src="/assets/images/logo.PNG" id="img"/>
+          <div class="mt-2">
+            <img src="/assets/images/logo.PNG" id="img"/>
+          </div>
+          
           <span class="error">
              {{message}}
           </span>
@@ -36,7 +39,7 @@
             </ion-button>
           </ion-item>
   
-          <ion-button color="dark" fill="clear" size="full">Mot de passe oublié</ion-button>
+          <ion-button color="dark" fill="clear" routerLink="/forgotpassword" size="full">Mot de passe oublié</ion-button>
           <ion-button type="submit" color="primary" size="full">LOGIN</ion-button>
           <ion-button color="primary" size="full" fill="clear" [routerLink]="['/register']">REGISTER</ion-button>
         </ion-card-content>

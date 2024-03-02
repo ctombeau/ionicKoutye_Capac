@@ -19,6 +19,26 @@ const routes: Routes = [
     path: 'register',
     loadChildren: () => import('./pages/user/register/register.module').then( m => m.RegisterPageModule)
   },
+  {
+    path: 'forgotpassword',
+    loadChildren: () => import('./pages/user/forgotpassword/forgotpassword.module').then( m => m.ForgotpasswordPageModule)
+  },
+  {
+    path: 'resetpassword',
+    loadChildren: () => import('./pages/user/resetpassword/resetpassword.module').then( m => m.ResetpasswordPageModule)
+  },
+  {
+    path: 'user-home',
+    loadChildren: () => import('./pages/user/user-home/user-home.module').then( m => m.UserHomePageModule)
+  },
+  {
+    path: 'user-detail',
+    loadChildren: () => import('./pages/user/user-detail/user-detail.module').then( m => m.UserDetailPageModule)
+  },
+  {
+    path: 'courtier',
+    loadChildren: () => import('./pages/user/courtier/courtier.module').then( m => m.CourtierPageModule)
+  },
 ];
 
 @NgModule({
