@@ -11,6 +11,8 @@ import { LoginPageModule } from './pages/user/login/login.module';
 import { UserModule } from './pages/user/user.module';
 import { HttpClient, HttpClientModule } from '@angular/common/http';
 import { UserService } from './services/user.service';
+import { UserDetailPage } from './pages/user/user-detail/user-detail.page';
+import { UserHomePage } from './pages/user/user-home/user-home.page';
 
 @NgModule({
   declarations: [AppComponent],
