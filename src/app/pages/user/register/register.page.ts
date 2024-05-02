@@ -3,6 +3,7 @@ import { Router } from '@angular/router';
 import { ActionSheetController } from '@ionic/angular';
 import { Camera, CameraResultType,CameraSource, GalleryImageOptions, ImageOptions } from '@capacitor/camera';
 import { CameraPreview, CameraPreviewOptions } from '@capacitor-community/camera-preview';
+import { FormBuilder, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-register',
@@ -18,17 +19,29 @@ export class RegisterPage implements OnInit {
   imgCamera: string[] = [];
   
   constructor(
-    //private camera: Camera,
     private router: Router,
     private actionsheet: ActionSheetController,
-    //private imagePicker: ImagePicker,
-    //private file: File
+    private formBuilder: FormBuilder
     ) { }
 
   ngOnInit() {
     Camera.requestPermissions({permissions:['photos']});
   }
+   
+  registerForm = this.formBuilder.group({
+      nom: ["",Validators.required],
+      prenom:["",Validators.required],
+      username: ["", Validators.required],
+      email: ["",Validators.required],
+      password: ["",Validators.required],
+      confirmPassword: ["",Validators.required],
+      typeUser: ["",Validators.required]
+      
+  });
 
+  public register(){
+    
+  }
   
   public backToLogin(): void
   {

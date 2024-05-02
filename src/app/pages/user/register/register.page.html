@@ -1,8 +1,8 @@
-<ion-header [translucent]="true">
+<!-- <ion-header [translucent]="true">
   <ion-toolbar>
     <ion-title>register</ion-title>
   </ion-toolbar>
-</ion-header>
+</ion-header> -->
 
 <ion-content [fullscreen]="true">
   <ion-header collapse="condense">
@@ -13,33 +13,35 @@
 
   <div class="container">
     <ion-card>
-       <ion-card-header >
-          <ion-card-title color="primary" style="text-align: center;">
+       <ion-card-header id="header">
+        <!-- <i class="bi bi-person-circle" ></i> -->
+        <!--  <ion-card-title color="primary" style="text-align: center;">
             <ion-icon name="person-circle-outline"></ion-icon>
-             Nouvel utilisateur</ion-card-title> 
+             Nouvel utilisateur</ion-card-title> -->
       </ion-card-header>
        <ion-card-content>
-           <form >
+           <p id="text-header">CREATION DE COMPTE</p>
+           <form [formGroup]="registerForm" (ngSubmit)="register()">
               <ion-item>
-                <ion-input type="text" labelPlacement="floating" label="Nom" ></ion-input>
+                <ion-input type="text"  placeholder="Nom" formControlName="nom"></ion-input>
               </ion-item>
               <ion-item>
-                <ion-input type="text" labelPlacement="floating" label="Prénom" ></ion-input>
+                <ion-input type="text" placeholder="prénom" formControlName="prenom"></ion-input>
               </ion-item>
               <ion-item>
-                <ion-input type="text" labelPlacement="floating" label="Username" ></ion-input>
+                <ion-input type="text" placeholder="Username" formControlName="username"></ion-input>
               </ion-item>
               <ion-item>
-                <ion-input type="email" labelPlacement="floating" label="Email" ></ion-input>
+                <ion-input type="email" placeholder="Email" formControlName="email"></ion-input>
               </ion-item>
               <ion-item>
-                <ion-input type="password" labelPlacement="floating" label="password"></ion-input>
+                <ion-input type="password" placeholder="Mot de passe" formControlName="password"></ion-input>
               </ion-item>
               <ion-item>
-                <ion-input type="password" labelPlacement="floating" label="confirm password" ></ion-input>
+                <ion-input type="password" placeholder="Confirmez mot de passe" formControlName="confirmPassword"></ion-input>
               </ion-item>
               <ion-item>
-                 <ion-select labelPlacement="floating" label="type user" >
+                 <ion-select placeholder="Type utilisateur" formControlName="typeUser">
                     <ion-select-option>Courtier</ion-select-option>
                     <ion-select-option>Locataire</ion-select-option>
                     <ion-select-option>Propriétaire</ion-select-option>
@@ -63,7 +65,8 @@
                  <ion-button (click)="getGallery()">From Gallery</ion-button>
               </ion-item>
             -->
-              <ion-button expand="block" color="primary" style="margin-top: 10px;">
+              <ion-button expand="block" color="primary" style="margin-top: 10px;"
+              [disabled]="!registerForm.valid">
                 <ion-icon name="add-outline"></ion-icon> 
                 Enregistrer</ion-button>
                 <ion-button expand="block" color="danger" style="margin-top: 10px;"

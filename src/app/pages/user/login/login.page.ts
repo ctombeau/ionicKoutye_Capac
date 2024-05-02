@@ -1,6 +1,6 @@
 import { Element } from '@angular/compiler';
 import { AfterViewInit, Component, ElementRef, Input, OnInit, ViewChild } from '@angular/core';
-import { NgForm } from '@angular/forms';
+import { FormBuilder, NgForm, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { UserLogin } from 'src/app/model/user-login';
 import { UserService } from 'src/app/services/user.service';
@@ -20,7 +20,13 @@ export class LoginPage implements OnInit, AfterViewInit {
   constructor(
     private router : Router,
     private userService: UserService,
+    private formBuilder : FormBuilder
   ) { }
+
+  loginForm = this.formBuilder.group({
+      username : ["", Validators.required],
+      password: ["",Validators.required]
+  })
 
   ngOnInit() {
     
@@ -35,9 +41,9 @@ export class LoginPage implements OnInit, AfterViewInit {
       this.router.navigateByUrl("/register");
    }
 
-   public Login(form : NgForm)
+   public Login()
    {
-       var user = new UserLogin(form.value.username, form.value.password);
+       var user = new UserLogin(this.loginForm.value.username??"", this.loginForm.value.password??"");
        /*
        if(user.username == "" || user.password=="")
        {

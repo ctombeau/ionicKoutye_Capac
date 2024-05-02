@@ -6,7 +6,7 @@ import { IonicModule, IonicRouteStrategy } from '@ionic/angular';
 
 import { AppComponent } from './app.component';
 import { AppRoutingModule } from './app-routing.module';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { LoginPageModule } from './pages/user/login/login.module';
 import { UserModule } from './pages/user/user.module';
 import { HttpClient, HttpClientModule } from '@angular/common/http';

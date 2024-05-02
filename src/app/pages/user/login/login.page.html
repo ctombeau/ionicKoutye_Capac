@@ -1,8 +1,8 @@
-<ion-header [translucent]="true">
+<!-- <ion-header [translucent]="true">
   <ion-toolbar>
     <ion-title>login</ion-title>
   </ion-toolbar>
-</ion-header>
+</ion-header> -->
 
 <ion-content [fullscreen]="true">
   <ion-header collapse="condense">
@@ -12,7 +12,7 @@
   </ion-header>
    
   <div id="container">
-    <form  #form="ngForm" (ngSubmit)="Login(form)" (keyup.enter)="Login(form)">
+    <form  [formGroup]="loginForm" (ngSubmit)="Login()" (keyup.enter)="Login()">
       <ion-card id="card">
         <ion-card-header>
           <ion-card-title color="primary">KOUTYE</ion-card-title>
@@ -28,20 +28,28 @@
              {{message}}
           </span>
           <ion-item>
-            <ion-input type="text" name="username" label="Username" labelPlacement="floating" placeholder="Votre nom utilisateur" ngModel></ion-input>
+            <ion-input type="text" formControlName="username" label="Username" labelPlacement="floating" placeholder="Votre nom utilisateur" ngModel></ion-input>
           </ion-item>
   
           <ion-item>
-            <ion-input #inputPassword type="password" name="password" label="Password" labelPlacement="floating" placeholder="Votre mot de passe" ngModel></ion-input>
+            <ion-input #inputPassword type="password" formControlName="password" label="Password" labelPlacement="floating" placeholder="Votre mot de passe" ngModel></ion-input>
             <ion-button slot="end" fill="clear" (click)="showPassword(inputPassword)" id="button-icon">
               <ion-icon *ngIf="showPsw==true"  name="eye-outline" color="primary" class="iconEye"></ion-icon>
               <ion-icon *ngIf="showPsw==false" name="eye-off-outline" color="primary" class="iconEye"></ion-icon>
             </ion-button>
           </ion-item>
   
-          <ion-button color="dark" fill="clear" routerLink="/forgotpassword" size="full">Mot de passe oublié</ion-button>
-          <ion-button type="submit" color="primary" size="full">LOGIN</ion-button>
-          <ion-button color="primary" size="full" fill="clear" [routerLink]="['/register']">REGISTER</ion-button>
+          
+          <ion-button class="mt-3 mb-3" type="submit" color="primary" size="full"
+          [disabled]="!loginForm.valid">
+            CONNECTER  <i id="i-connect" class="bi bi-box-arrow-in-right"></i>
+          </ion-button>
+
+          <ion-button class="mb-3" style="background-color: white;" color="white"  size="full" fill="clear" [routerLink]="['/register']">
+            Nouvel utilisateur  <i id="i-add" class="bi bi-person-add"></i>
+          </ion-button>
+
+          <a color="dark" id="link-forgotpassword" class="mb-3"  routerLink="/forgotpassword" size="full">Mot de passe oublié</a>
         </ion-card-content>
       </ion-card>
     </form>
