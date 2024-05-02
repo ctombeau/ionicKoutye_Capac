@@ -15,15 +15,17 @@
     <ion-card>
        <ion-card-header id="header">
         <!-- <i class="bi bi-person-circle" ></i> -->
+        <img id="img" src="/assets/images/user.jpg"/>
         <!--  <ion-card-title color="primary" style="text-align: center;">
             <ion-icon name="person-circle-outline"></ion-icon>
              Nouvel utilisateur</ion-card-title> -->
       </ion-card-header>
        <ion-card-content>
+        <!-- [ngClass]="{'input-error': registerForm.controls.nom.invalid}" -->
            <p id="text-header">CREATION DE COMPTE</p>
            <form [formGroup]="registerForm" (ngSubmit)="register()">
-              <ion-item>
-                <ion-input type="text"  placeholder="Nom" formControlName="nom"></ion-input>
+              <ion-item >
+                <ion-input type="text"  placeholder="Nom" formControlName="nom" ></ion-input>
               </ion-item>
               <ion-item>
                 <ion-input type="text" placeholder="prénom" formControlName="prenom"></ion-input>

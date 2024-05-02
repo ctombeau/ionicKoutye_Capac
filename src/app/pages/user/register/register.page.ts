@@ -32,7 +32,7 @@ export class RegisterPage implements OnInit {
       nom: ["",Validators.required],
       prenom:["",Validators.required],
       username: ["", Validators.required],
-      email: ["",Validators.required],
+      email: ["",Validators.required, Validators.email],
       password: ["",Validators.required],
       confirmPassword: ["",Validators.required],
       typeUser: ["",Validators.required]
@@ -40,7 +40,7 @@ export class RegisterPage implements OnInit {
   });
 
   public register(){
-    
+
   }
   
   public backToLogin(): void
