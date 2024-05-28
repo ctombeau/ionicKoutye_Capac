@@ -1,29 +1,31 @@
-<ion-header [translucent]="true">
-  <ion-toolbar >
-    <ion-text class="mb-2 ms-2">PAGE ACCUEIL UTILISATEUR</ion-text>
-    <ion-segment value="profil" #tabSegment >
-      <ion-segment-button value="profil" >
-        <ion-label>Profil</ion-label>
-      </ion-segment-button>
-      <ion-segment-button value="courtier">
-        <ion-label>Courtier</ion-label>
-      </ion-segment-button>
-      <ion-segment-button value="favorites">
-        <ion-label>Favorites</ion-label>
-      </ion-segment-button>
-    </ion-segment>
-  </ion-toolbar>
-</ion-header>
-
-<ion-content [fullscreen]="true">
-  <ion-header collapse="condense">
-    <ion-toolbar>
-      <ion-title size="large">user-home</ion-title>
-    </ion-toolbar>
-  </ion-header>
+<ion-content class="ion-padding">
     
-  {{tabSegment.value}}
-
-  <!-- <app-user-detail></app-user-detail> -->
+  <ion-segment class="mb-3" value="0"  #tabSegment (ionChange)="changeSegment($event)">
+    <ion-segment-button value="0" >
+      <ion-label>Profil</ion-label>
+    </ion-segment-button>
+    <ion-segment-button value="1">
+      <ion-label>Courtier</ion-label>
+     
+    </ion-segment-button>
+    <ion-segment-button value="2">
+      <ion-label>Favorites</ion-label>
+    </ion-segment-button>
+  </ion-segment>
+  
+   <!-- {{tabSegment.value}} -->
+   <div class="content">
+      <div *ngIf="tabSegment.value==0">
+          <p>Papa</p>
+          
+      </div>
+      <div *ngIf="tabSegment.value==1">
+          <p>Maman</p>
+      </div>
+      <div *ngIf="tabSegment.value==2">
+          <p>autre</p>
+      </div>
+   </div>
    
+   <ion-button id="btn-retour" (click)="goBack()"> <ion-icon name="return-up-back-outline"></ion-icon></ion-button>
 </ion-content>

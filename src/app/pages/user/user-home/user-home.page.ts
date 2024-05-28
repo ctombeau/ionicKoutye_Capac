@@ -1,20 +1,30 @@
-import { Component, OnInit } from '@angular/core';
+import { AfterViewInit, Component, Input, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { IonSegment } from '@ionic/angular';
+
 
 @Component({
   selector: 'app-user-home',
   templateUrl: './user-home.page.html',
   styleUrls: ['./user-home.page.scss'],
 })
-export class UserHomePage implements OnInit {
+export class UserHomePage implements OnInit, AfterViewInit {
+  @Input('tabSegment') tabSegment? : HTMLIonSegmentElement ;
 
   constructor(private router: Router) { }
 
-  ngOnInit() {
+  ngAfterViewInit(): void {
+    console.log(this.tabSegment);
   }
 
-  async userChoice(event : any)
+  ngOnInit() {
+     
+  }
+
+  
+  async changeSegment(event : any)
   {
+    /*
      const page = event.detail.value;
      switch(page)
      {
@@ -31,6 +41,10 @@ export class UserHomePage implements OnInit {
               break;
      }
      console.log(event.detail.value);
+     */
   }
-
+  
+   goBack(){
+       this.router.navigate(['/home']);
+   }
 }

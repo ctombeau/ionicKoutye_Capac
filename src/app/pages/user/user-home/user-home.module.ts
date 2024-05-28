@@ -11,13 +11,16 @@ import { UserDetailPage } from '../user-detail/user-detail.page';
 import { UserDetailPageModule } from '../user-detail/user-detail.module';
 import { CourtierPage } from '../courtier/courtier.page';
 import { CourtierPageModule } from '../courtier/courtier.module';
+import { UserDetailPageRoutingModule } from '../user-detail/user-detail-routing.module';
+
 
 @NgModule({
   imports: [
     CommonModule,
     FormsModule,
     IonicModule,
-    UserHomePageRoutingModule
+    UserHomePageRoutingModule,
+    UserDetailPageModule
   ],
   declarations: [UserHomePage]
 })
