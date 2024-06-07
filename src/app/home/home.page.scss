@@ -9,6 +9,32 @@ ion-menu
    --background: url("../../assets/images/back.avif") no-repeat center center / cover;
 }
 */
-ion-padding a :hover{
-    background-color: blue($color: #000000);
+
+ion-toolbar{
+   --background: #3880ff;
+   color: white;
 }
+
+#content-menu{
+   height: 15px;
+}
+
+#content-menu :hover {
+   --background:#3880ff;
+   border : 1px solid #3880ff;
+   border-radius: 20px;
+   color: white;
+}
+
+#img
+  {
+     width: 50px;
+     height: 50px;
+     border-radius: 50%;
+  }
+
+  ion-item{
+     font-size: 13px;
+     margin-top: auto;
+     margin-bottom: auto;
+  }

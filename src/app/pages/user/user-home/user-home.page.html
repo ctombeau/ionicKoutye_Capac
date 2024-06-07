@@ -16,16 +16,31 @@
    <!-- {{tabSegment.value}} -->
    <div class="content">
       <div *ngIf="tabSegment.value==0">
-          <p>Papa</p>
+
+        <div class="detail-user">
+          <div id="image-user">
+
+          </div>
+        </div>
+          
           
       </div>
       <div *ngIf="tabSegment.value==1">
-          <p>Maman</p>
+          <div class="courtier">
+            <ion-grid>
+              <ion-row>
+                <ion-col>Nom</ion-col>
+                <ion-col>prenom</ion-col>
+                <ion-col>username</ion-col>
+              </ion-row>
+            </ion-grid>
+          </div>
       </div>
       <div *ngIf="tabSegment.value==2">
           <p>autre</p>
       </div>
    </div>
    
-   <ion-button id="btn-retour" (click)="goBack()"> <ion-icon name="return-up-back-outline"></ion-icon></ion-button>
+   <!-- <ion-button id="btn-retour" (click)="goBack()"> <ion-icon name="return-up-back-outline"></ion-icon></ion-button> -->
 </ion-content>
+

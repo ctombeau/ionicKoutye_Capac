@@ -12,13 +12,14 @@ export class UserHomePage implements OnInit, AfterViewInit {
   @Input('tabSegment') tabSegment? : HTMLIonSegmentElement ;
 
   constructor(private router: Router) { }
+  @Input() showTabs = false;
 
   ngAfterViewInit(): void {
     console.log(this.tabSegment);
   }
 
   ngOnInit() {
-     
+      
   }
 
   

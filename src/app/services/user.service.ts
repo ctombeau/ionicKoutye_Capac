@@ -8,6 +8,8 @@ import { UserLogin } from '../model/user-login';
 export class UserService {
 
   baseUrl : string = "http://localhost:5050/api";
+  isUrl : boolean = false;
+  
   constructor(
     private http : HttpClient
   ) { }

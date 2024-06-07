@@ -30,15 +30,7 @@ const routes: Routes = [
   {
     path: 'user-home',
     loadChildren: () => import('./pages/user/user-home/user-home.module').then( m => m.UserHomePageModule)
-  },
-  {
-    path: 'user-detail',
-    loadChildren: () => import('./pages/user/user-detail/user-detail.module').then( m => m.UserDetailPageModule)
-  },
-  {
-    path: 'courtier',
-    loadChildren: () => import('./pages/user/courtier/courtier.module').then( m => m.CourtierPageModule)
-  },
+  }
 ];
 
 @NgModule({
