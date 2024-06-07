@@ -1,8 +1,19 @@
+
 ion-tab-bar, ion-tab-button{
     background-color:#3880ff;
     color: white;
 }
-
+/*
 ion-tab-bar:hover, ion-tab-button:hover{
-    color: white;
+    --color: white;
 }
+*/
+
+ion-tab-button{
+    --background-focused: #FF5733;
+    --color-selected: #FF5733;
+    --padding-end: 0px;
+    --margin-left:0px;
+    --margin-right:0px;
+    max-width:100px;
+   }

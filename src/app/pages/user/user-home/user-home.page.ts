@@ -21,7 +21,7 @@ export class UserHomePage implements OnInit, AfterViewInit {
   ngOnInit() {
       
   }
-
+ 
   
   async changeSegment(event : any)
   {
