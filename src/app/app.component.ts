@@ -24,7 +24,8 @@ export class AppComponent implements OnInit, OnDestroy{
        takeUntil(this.closed$)
     ).subscribe((event : any) => {
         console.log(event);
-       if ( event.url=== '/login' || event.url==='/') {
+       if ( event.url=== '/login' || event.url==='/' || event.url==='/register' 
+         || event.url==='/forgotpassword') {
          this.showTabs = false; // <-- hide tabs on specific pages
        }
        else
@@ -36,4 +37,14 @@ export class AppComponent implements OnInit, OnDestroy{
   ngOnDestroy() {
     this.closed$.next(0); // <-- close subscription when component is destroyed
   }
+
+   goToHome(){
+      this._router.navigate(['/home']);
+   }
+   goToCourtier(){}
+   goToAppartment(){}
+   goToFerme(){}
+   goOut(){
+      this._router.navigate(['/']);
+   }
 }
