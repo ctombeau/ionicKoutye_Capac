@@ -9,16 +9,16 @@
     <form  [formGroup]="loginForm" (ngSubmit)="Login()" (keyup.enter)="Login()">
       <ion-card id="card">
         <ion-card-header>
-          <ion-card-title color="primary">KOUTYE</ion-card-title>
+          <!-- <ion-card-title color="primary">KOUTYE</ion-card-title> -->
          
         </ion-card-header>
       
         <ion-card-content>
-          <div class="mt-2">
+          <div class="mt-2 mb-4">
             <img src="/assets/images/logoKoutye.PNG" id="img"/>
           </div>
           
-          <span class="error">
+          <span class="error" *ngIf="message$ |async as message">
              {{message}}
           </span>
           <ion-item>
@@ -32,7 +32,10 @@
               <ion-icon *ngIf="showPsw==false" name="eye-off-outline" color="primary" class="iconEye"></ion-icon>
             </ion-button>
           </ion-item>
-  
+          
+          <div class="spin" *ngIf="spinner$ | async">
+            <ion-spinner name="bubbles" color="danger"></ion-spinner>
+          </div>
           
           <ion-button id="con" class="mt-3 mb-3" type="submit" color="primary" size="full"
           [disabled]="!loginForm.valid">

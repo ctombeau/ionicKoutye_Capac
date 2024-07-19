@@ -14,8 +14,5 @@ export class UserService {
     private http : HttpClient
   ) { }
 
-   postLogin(user : UserLogin)
-   {
-       return this.http.post(this.baseUrl+"/login",user);
-   }
+   
 }

@@ -2,7 +2,9 @@ import { Element } from '@angular/compiler';
 import { AfterViewInit, Component, ElementRef, Input, OnInit, ViewChild } from '@angular/core';
 import { FormBuilder, NgForm, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
+import { BehaviorSubject, Observable } from 'rxjs';
 import { UserLogin } from 'src/app/model/user-login';
+import { LoginService } from 'src/app/services/login.service';
 import { UserService } from 'src/app/services/user.service';
 
 
@@ -13,13 +15,14 @@ import { UserService } from 'src/app/services/user.service';
 })
 export class LoginPage implements OnInit, AfterViewInit {
 
-  message : string = "";
+  message$! : Observable<String> ;
   userInfoToken : any ="";
   showPsw: boolean = false;
- 
+  spinner$! : Observable<boolean>;
+
   constructor(
     private router : Router,
-    private userService: UserService,
+    private loginService: LoginService,
     private formBuilder : FormBuilder
   ) { }
 
@@ -29,7 +32,9 @@ export class LoginPage implements OnInit, AfterViewInit {
   })
 
   ngOnInit() {
-    
+      this.message$ = this.loginService.messsageLogin$;
+      this.spinner$= this.loginService.spinnerLogin$;
+      //console.log(this.spinner$);
   }
 
   ngAfterViewInit(): void {
@@ -44,26 +49,16 @@ export class LoginPage implements OnInit, AfterViewInit {
    public Login()
    {
        var user = new UserLogin(this.loginForm.value.username??"", this.loginForm.value.password??"");
-       /*
+       
        if(user.username == "" || user.password=="")
        {
-          this.message ="Les champs sont obligatoires";
+         // this.message$("Les champs sont obligatoires");
        }
        else
-       {
-          this.userService.postLogin(user).subscribe((data: any)=>{
-            console.log(data['access-token']);
-            console.log(this.userInfoToken) 
-             sessionStorage.setItem("access-token",data['access-token']);
-             this.router.navigate(['home']);
-          },
-          (error)=>{
-            console.log(error);
-          }
-        );
+       {  
+          this.loginService.postLogin(user).subscribe(); 
        }
-       */
-       this.router.navigate(['home']);
+       
    }
 
    showPassword(input : any)

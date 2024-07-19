@@ -23,7 +23,6 @@ export class AppComponent implements OnInit, OnDestroy{
        filter(e => e instanceof NavigationEnd),
        takeUntil(this.closed$)
     ).subscribe((event : any) => {
-        console.log(event);
        if ( event.url=== '/login' || event.url==='/' || event.url==='/register' 
          || event.url==='/forgotpassword') {
          this.showTabs = false; // <-- hide tabs on specific pages
