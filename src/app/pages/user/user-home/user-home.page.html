@@ -9,7 +9,7 @@
      
     </ion-segment-button>
     <ion-segment-button value="2">
-      <ion-label>Favorites</ion-label>
+      <ion-label>Chat</ion-label>
     </ion-segment-button>
   </ion-segment>
   
@@ -40,7 +40,22 @@
           </div>
       </div>
       <div *ngIf="tabSegment.value==2">
-          <p>autre</p>
+          <ion-list >
+            <ion-item (click)="showMessage()">
+              <ion-img id="img-person" src="../../../../assets/images/user.jpg"></ion-img>
+              <div class="message">
+                  <p id="nom"><strong>Chrisnor</strong></p>
+                  <p id="text-message">Mwen nan wout map vini</p>
+              </div>
+            </ion-item>
+            <ion-item (click)="showMessage()">
+              <ion-img id="img-person" src="../../../../assets/images/user.jpg"></ion-img>
+              <div class="message">
+                  <p id="nom"><strong>Sherley</strong></p>
+                  <p id="text-message">Ou dodo b?</p>
+              </div>
+            </ion-item>
+          </ion-list>
       </div>
    </div>
    

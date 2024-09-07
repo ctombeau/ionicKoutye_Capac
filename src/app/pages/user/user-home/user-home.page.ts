@@ -9,6 +9,7 @@ import { IonSegment } from '@ionic/angular';
   styleUrls: ['./user-home.page.scss'],
 })
 export class UserHomePage implements OnInit, AfterViewInit {
+
   @Input('tabSegment') tabSegment? : HTMLIonSegmentElement ;
 
   constructor(private router: Router) { }
@@ -48,4 +49,8 @@ export class UserHomePage implements OnInit, AfterViewInit {
    goBack(){
        this.router.navigate(['/home']);
    }
+
+   showMessage() {
+     console.log("ouverture de la boite a message")
+  }
 }

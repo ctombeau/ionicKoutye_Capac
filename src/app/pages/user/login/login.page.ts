@@ -2,7 +2,7 @@ import { Element } from '@angular/compiler';
 import { AfterViewInit, Component, ElementRef, Input, OnInit, ViewChild } from '@angular/core';
 import { FormBuilder, NgForm, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
-import { BehaviorSubject, Observable } from 'rxjs';
+import { BehaviorSubject, Observable, of } from 'rxjs';
 import { UserLogin } from 'src/app/model/user-login';
 import { LoginService } from 'src/app/services/login.service';
 import { UserService } from 'src/app/services/user.service';
@@ -34,7 +34,6 @@ export class LoginPage implements OnInit, AfterViewInit {
   ngOnInit() {
       this.message$ = this.loginService.messsageLogin$;
       this.spinner$= this.loginService.spinnerLogin$;
-      //console.log(this.spinner$);
   }
 
   ngAfterViewInit(): void {
@@ -56,13 +55,15 @@ export class LoginPage implements OnInit, AfterViewInit {
        }
        else
        {  
-          this.loginService.postLogin(user).subscribe(); 
+          // this.loginService.postLogin(user).subscribe(); 
+          this.router.navigate(['home'])
        }
        
    }
 
    showPassword(input : any)
    {
+       console.log(input)
        if(this.showPsw==false)
        {
           this.showPsw =true;

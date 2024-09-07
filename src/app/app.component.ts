@@ -5,6 +5,7 @@ import { Subject } from 'rxjs';
 import { takeUntil, filter } from 'rxjs/operators';
 import { UserService } from './services/user.service';
 import { IonTabs } from '@ionic/angular';
+import { LogoutService } from './services/logout.service';
 
 @Component({
   selector: 'app-root',
@@ -15,7 +16,9 @@ export class AppComponent implements OnInit, OnDestroy{
   closed$ = new Subject<any>();
   showTabs : boolean = false;
 
-  constructor(private _router: Router, private userService: UserService) { }
+  constructor(private _router: Router, private userService: UserService,
+     private logoutService : LogoutService
+  ) { }
 
   ngOnInit() {
     
@@ -44,6 +47,6 @@ export class AppComponent implements OnInit, OnDestroy{
    goToAppartment(){}
    goToFerme(){}
    goOut(){
-      this._router.navigate(['/']);
+      this.logoutService.logout();
    }
 }
