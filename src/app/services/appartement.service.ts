@@ -12,6 +12,7 @@ export class AppartementService {
   constructor(private http: HttpClient) { }
 
     getAllAppartementsByUsername(username: any):Observable<Appartement[]>{
+        console.log("Dans appartement.service.ts")
         return this.http.get<Appartement[]>(this.url+"/appartement/show-by-username?username="+username).pipe(
             tap(()=>console.log("Test du service")),
             map((apps)=>{

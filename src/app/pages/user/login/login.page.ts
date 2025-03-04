@@ -55,7 +55,7 @@ export class LoginPage implements OnInit, AfterViewInit {
        }
        else
        {  
-          // this.loginService.postLogin(user).subscribe(); 
+          //this.loginService.postLogin(user).subscribe(); 
           this.router.navigate(['home'])
        }
        
@@ -63,7 +63,6 @@ export class LoginPage implements OnInit, AfterViewInit {
 
    showPassword(input : any)
    {
-       console.log(input)
        if(this.showPsw==false)
        {
           this.showPsw =true;

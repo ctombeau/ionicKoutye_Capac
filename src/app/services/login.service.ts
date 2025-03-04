@@ -11,7 +11,19 @@ import { Router } from '@angular/router';
 export class LoginService {
   url : string = environment.baseUrl;
   isUrl : boolean = false;
+  private token = "token";
+  private nom = "nom";
+  private prenom = "prenom";
+  private username="username";
+  private email= "email";
+  private phone = "phone";
+  private photo="photo";
+  private nomType="nomType"
   spinnerLogin$ : BehaviorSubject<boolean> = new BehaviorSubject<boolean>(false);
+
+  getToken(): string | null{
+    return sessionStorage.getItem(this.token);
+  }
 
   constructor(private http: HttpClient, private router: Router) { }
   messsageLogin$ : BehaviorSubject<String> = new BehaviorSubject<String>("");
@@ -21,10 +33,7 @@ export class LoginService {
       this.spinnerLogin$.next(true);
       return this.http.post(this.url+"/login",user).pipe(
           map((data: any)=>{
-               //console.log(data.success);
                if(data.success===true){
-                  //console.log(data.object['access-token'])
-                  //console.log(data.object['user-info'])
                   this.saveUserInfo(data.object['access-token'],data.object['user-info']);
                   this.spinnerLogin$.next(false);
                   this.messsageLogin$.next("");
@@ -52,11 +61,11 @@ export class LoginService {
   }
 
   saveUserInfo(token: any, userInfo: any){
-      sessionStorage.setItem("token",token);
-      sessionStorage.setItem("username",userInfo.username);
-      sessionStorage.setItem("email",userInfo.email);
-      sessionStorage.setItem("nom",userInfo.nom);
-      sessionStorage.setItem("prenom",userInfo.prenom);
-      sessionStorage.setItem("nomType",userInfo.nomType);
+      sessionStorage.setItem(this.token,token);
+      sessionStorage.setItem(this.username,userInfo.username);
+      sessionStorage.setItem(this.email,userInfo.email);
+      sessionStorage.setItem(this.nom,userInfo.nom);
+      sessionStorage.setItem(this.prenom,userInfo.prenom);
+      sessionStorage.setItem(this.nomType,userInfo.nomType);
   }
 }
