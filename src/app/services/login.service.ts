@@ -41,7 +41,6 @@ export class LoginService {
                }
           }),
           catchError((err: HttpErrorResponse)=>{
-               console.log(err);
                
                if(err.status===401){
                    this.spinnerLogin$.next(false);

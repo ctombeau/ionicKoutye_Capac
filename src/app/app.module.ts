@@ -13,6 +13,7 @@ import { HTTP_INTERCEPTORS, HttpClient, HttpClientModule } from '@angular/common
 import { UserService } from './services/user.service';
 import { UserHomePage } from './pages/user/user-home/user-home.page';
 import { AuthInterceptor } from './interceptors/auth.interceptor';
+//import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 
 
 @NgModule({
@@ -24,6 +25,7 @@ import { AuthInterceptor } from './interceptors/auth.interceptor';
     FormsModule,
     UserModule,
     HttpClientModule
+   // MatSpinnerModule
       ],
   providers: [{ provide: RouteReuseStrategy, useClass: IonicRouteStrategy },
      HttpClient,

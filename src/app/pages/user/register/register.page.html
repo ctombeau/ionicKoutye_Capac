@@ -9,14 +9,18 @@
     <ion-card>
        <ion-card-header id="header">
         <!-- <i class="bi bi-person-circle" ></i> -->
-        <img id="img" src="/assets/images/user.jpg"/>
+        <img id="img" src="assets/images/user.jpg"/>
         <!--  <ion-card-title color="primary" style="text-align: center;">
             <ion-icon name="person-circle-outline"></ion-icon>
              Nouvel utilisateur</ion-card-title> -->
       </ion-card-header>
        <ion-card-content>
+        
         <!-- [ngClass]="{'input-error': registerForm.controls.nom.invalid}" -->
            <p id="text-header">CREATION DE COMPTE</p>
+           <div *ngIf="message$ | async as message" class="error">
+               <p>{{message}}</p>
+           </div>
            <form [formGroup]="registerForm" (ngSubmit)="register()">
               <ion-item >
                 <ion-input type="text"  placeholder="Nom" formControlName="nom" ></ion-input>
@@ -43,26 +47,18 @@
                     <ion-select-option>Propriétaire</ion-select-option>
                  </ion-select>
               </ion-item>
-    <!--
               <ion-item>
-                  <ion-label>Photo</ion-label>
-
-                  <ion-fab-button (click)="selectImageOptions()" slot="end">
-                    
-                  </ion-fab-button>
-                  <img #inputImage [src]="imgUri"/>
+                <ion-input type="text" placeholder="t&eacute;l&eacute;phone" 
+                formControlName="phone" pattern="^[0-9]+$">
+              </ion-input>
               </ion-item>
-    -->
+              <div class="spinner-container" *ngIf="isLoading">
+                <ion-spinner class="spinner" name="crescent" color="danger"></ion-spinner>
+                <img class="spinner-image" src="assets/images/logoKoutye.PNG"/>
+              </div>
               
- 
-            <!--  <ion-item>
-                <img #inputImage [src]="imgUri" width="200" height="200"/>
-                 <ion-button (click)="getCamera()">From Camera</ion-button>
-                 <ion-button (click)="getGallery()">From Gallery</ion-button>
-              </ion-item>
-            -->
               <ion-button expand="block" color="primary" style="margin-top: 10px;"
-              [disabled]="!registerForm.valid">
+              type="submit">
                 <ion-icon name="add-outline"></ion-icon> 
                 Enregistrer</ion-button>
                 <ion-button expand="block" color="danger" style="margin-top: 10px;"
@@ -71,6 +67,14 @@
                 <ion-icon name="arrow-back-circle-outline"></ion-icon> 
                   Cancel</ion-button>
            </form>
+
+           <ion-alert
+              [isOpen]="isAlertOpen"
+              subHeader="CREATION D'UTILISATEUR"
+              message="Utilisateur créé avec succès."
+              [buttons]="alertButtons"
+              (didDismiss)="setOpen(false)"
+            ></ion-alert>
        </ion-card-content>
     </ion-card>
 </div>

@@ -24,7 +24,8 @@
 }
 
 #photo{
-
+    width: 100px;
+    height: 100px;
 }
 #camera{
   position: absolute;
@@ -75,8 +76,4 @@
     display : flex;
     flex-direction: row;
     height: 30px;
-}
-
-.data{
-   
 }
