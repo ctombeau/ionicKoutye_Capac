@@ -53,8 +53,8 @@
               </ion-input>
               </ion-item>
               <div class="spinner-container" *ngIf="isLoading">
-                <ion-spinner class="spinner" name="crescent" color="danger"></ion-spinner>
-                <img class="spinner-image" src="assets/images/logoKoutye.PNG"/>
+               <ion-spinner class="spinner" name="crescent" color="danger"></ion-spinner>
+                <ion-img src="assets/images/logoKoutye.PNG"></ion-img>
               </div>
               
               <ion-button expand="block" color="primary" style="margin-top: 10px;"
@@ -68,13 +68,6 @@
                   Cancel</ion-button>
            </form>
 
-           <ion-alert
-              [isOpen]="isAlertOpen"
-              subHeader="CREATION D'UTILISATEUR"
-              message="Utilisateur créé avec succès."
-              [buttons]="alertButtons"
-              (didDismiss)="setOpen(false)"
-            ></ion-alert>
        </ion-card-content>
     </ion-card>
 </div>

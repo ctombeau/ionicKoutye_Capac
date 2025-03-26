@@ -24,8 +24,7 @@ export class RegisterPage implements OnInit {
   cameraActive: boolean= false;
   imgCamera: string[] = [];
   message$ : BehaviorSubject<string> = new BehaviorSubject<string>("");
-  isLoading: boolean = true;
-  isAlertOpen = true;
+  isLoading: boolean = false;
   alertButtons = ['OK'];
 
   constructor(
@@ -52,11 +51,9 @@ export class RegisterPage implements OnInit {
   });
 
  
-  setOpen(isOpen: boolean) {
-    this.isAlertOpen = isOpen;
-  }
 
   public register(){
+     this.isLoading=true;
      var nom = this.registerForm.value.nom ?? "";
      var prenom = this.registerForm.value.prenom ?? "";
      var username = this.registerForm.value.username ?? "";
@@ -74,13 +71,23 @@ export class RegisterPage implements OnInit {
            if(password == confirmPassword)
            {
                this.message$.next("");
+               this.isLoading=false;
                this.userService.postUser(user).pipe(
-                   map((response)=>{
-                    if(response.success===true)
-                      {
-                         this.setOpen(true);
-                         this.router.navigate(['/']);
-                         shareReplay();
+                  map((response)=>{
+                  if(response.success===true)
+                  {
+                        Swal.fire({
+                          text: "Utilisateur créé avec succès",
+                          width:'200px',
+                          icon: 'success',
+                          heightAuto: false
+                         
+                        }).then((result) => {
+                            if (result.isConfirmed) {
+                                this.router.navigate(['/']);
+                     
+                            }
+                          });
                       }
                       else{
                          this.message$.next("Problème lors de l'enregistrement")
@@ -99,12 +106,14 @@ export class RegisterPage implements OnInit {
            }
            else
            {
+              this.isLoading=false;
               this.message$.next("Les mots de passe sont différents.");
               
            }
       }
       else
       {
+          this.isLoading=false;
           this.message$.next("Les champs sont obligatoires.");
       }
      
