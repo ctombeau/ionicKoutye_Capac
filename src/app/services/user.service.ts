@@ -23,4 +23,8 @@ export class UserService {
    public postUser(user : User): Observable<any>{
     return this.http.post(this.url+"/user/add",user);
    }
+
+   public processForgotPassword(email: string){
+    return this.http.get(this.url+"/send-email?emailTo="+ email);
+  }
 }

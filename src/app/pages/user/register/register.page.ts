@@ -71,11 +71,12 @@ export class RegisterPage implements OnInit {
            if(password == confirmPassword)
            {
                this.message$.next("");
-               this.isLoading=false;
+               
                this.userService.postUser(user).pipe(
                   map((response)=>{
                   if(response.success===true)
                   {
+                        this.isLoading=false;
                         Swal.fire({
                           text: "Utilisateur créé avec succès",
                           width:'200px',
@@ -90,10 +91,12 @@ export class RegisterPage implements OnInit {
                           });
                       }
                       else{
+                         this.isLoading=false;
                          this.message$.next("Problème lors de l'enregistrement")
                       }
                    }),
                    catchError((err: HttpErrorResponse)=>{
+                    this.isLoading=false;
                     if(err.status===500 || err.status===0){
                       this.message$.next("Nous avons rencontré un problème serveur.");
                     }
