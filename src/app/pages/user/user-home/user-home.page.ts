@@ -1,6 +1,9 @@
 import { AfterViewInit, Component, Input, OnInit, ViewChild } from '@angular/core';
 import { Router } from '@angular/router';
 import { Camera, CameraResultType, CameraSource } from '@capacitor/camera';
+import { PopoverController } from '@ionic/angular';
+import { PopoverUpdateUserComponent } from 'src/app/components/popover-update-user/popover-update-user.component';
+import { UserService } from 'src/app/services/user.service';
 
 
 @Component({
@@ -11,9 +14,11 @@ import { Camera, CameraResultType, CameraSource } from '@capacitor/camera';
 export class UserHomePage implements OnInit, AfterViewInit {
 
   @Input('tabSegment') tabSegment? : HTMLIonSegmentElement ;
-  photo?: string = '/assets/images/user.jpg';
 
-  constructor(private router: Router) { }
+  constructor(private router: Router,
+    private userService : UserService,
+    private popoverCtrl: PopoverController
+  ) { }
   @Input() showTabs = false;
 
   nom: any= sessionStorage.getItem("nom");
@@ -21,10 +26,18 @@ export class UserHomePage implements OnInit, AfterViewInit {
   username: any= sessionStorage.getItem("username");
   email: any= sessionStorage.getItem("email");
   type: any= sessionStorage.getItem("nomType");
+  phone: string= sessionStorage.getItem("phone")?.toUpperCase() ?? "";
+  photo: string = sessionStorage.getItem("photo") ?? "";
+  index= this.photo?.lastIndexOf("assets");
+  subPhoto : string= this.photo?.substring(this.index);
+  imageUrl: string | ArrayBuffer | null= this.subPhoto=="" ? "assets/images/user.jpg" : this.subPhoto;
+  selectedFile: File | null = null;
 
   @ViewChild('popover') popover!: HTMLIonPopoverElement;
 
   isOpen = false;
+
+ 
 
   presentPopover(e: Event) {
     this.popover.event = e;
@@ -36,7 +49,7 @@ export class UserHomePage implements OnInit, AfterViewInit {
   }
 
   ngOnInit() {
-      
+    
   }
  
   
@@ -71,34 +84,82 @@ export class UserHomePage implements OnInit, AfterViewInit {
   }
 
   async takePicture(){
-     console.log("on prend une photo")
+    
      try {
       const image = await Camera.getPhoto({
         quality: 90,
-        allowEditing: false, // Permet de couper ou pas l'image
-        source: CameraSource.Camera, // Utilise la caméra pour prendre une photo
-        resultType: CameraResultType.Uri // Retourne l'URI de l'image
+        allowEditing: false, 
+        source: CameraSource.Camera, 
+        resultType: CameraResultType.Uri 
       });
 
-      this.photo = image.webPath; // URI de l'image pour l'affichage
+      this.imageUrl = image.webPath ?? ""; 
+     
+      
     } catch (error) {
       console.error("Erreur lors de la prise de photo : ", error);
+      
     }
   }
 
   async chooseFromGallery() {
+    
     try {
       const image = await Camera.getPhoto({
         quality: 90,
         allowEditing: false,
-        source: CameraSource.Photos, // Sélectionner depuis la galerie
+        source: CameraSource.Photos, 
         resultType: CameraResultType.Uri
       });
 
-      this.photo = image.webPath; // URI de l'image pour l'affichage
+      this.imageUrl = image.webPath ?? ""; 
+      console.warn(this.imageUrl)
     } catch (error) {
       console.error("Erreur lors du choix de l'image : ", error);
     }
+  }
+
+  getPicture(event: any){
+    console.log("Oui getPicture()")
+    const input = event.target as HTMLInputElement;
+    if (input?.files?.length) {
+       this.selectedFile = input.files[0];
+      const reader = new FileReader();
+      reader.onload = () => {
+        this.imageUrl = reader.result; // Met l'URL de l'image dans `imageUrl`
+      
+      };
+
+      reader.readAsDataURL(this.selectedFile); // Convertit le fichier en URL pour l'affichage
+      if(this.selectedFile){
+       const formData = new FormData();
+       formData.append('username',this.username);
+       formData.append('photo', this.selectedFile, this.selectedFile.name);
+       console.log(formData)
+       this.userService.setPicture(formData).subscribe(response => {
+         console.log('Fichier téléchargé avec succès!', response);
+       }, error => {
+         console.error('Erreur de téléchargement', error);
+       });
+      }
+    }
+     
+  }
+
+  async showPopover(ev : any){
+     const popover = await this.popoverCtrl.create({
+        component: PopoverUpdateUserComponent,
+        event: ev,
+        translucent: false,
+        showBackdrop:true
+     })
+
+     await popover.present();
+
+     const {data} = await popover.onDidDismiss();
+     if(data){
+        console.log("Formulaire soumis avec: ", data)
+     }
   }
  
 }

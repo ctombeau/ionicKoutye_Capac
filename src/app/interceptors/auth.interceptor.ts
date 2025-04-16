@@ -21,9 +21,9 @@ export class AuthInterceptor implements HttpInterceptor {
         if(!request.url.includes("/login"))
         {
              let clone = request.clone({
-              headers : request.headers.set('Authorization','Bearer '+token)
+                headers : request.headers.set('Authorization','Bearer '+token)
             });
-            console.log("clone request", clone)
+            console.log(clone)
             return next.handle(clone);
         }
         else

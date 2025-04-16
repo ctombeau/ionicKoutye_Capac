@@ -21,22 +21,28 @@
             <div id="banner">
               
             </div>
-          <div id="image-user">
-              <img id="photo" [src]="photo"/>
+          <div id="image-user" >
+              <img id="photo" [src]="imageUrl"/>
               <ion-icon name="camera" id="camera" (click)="presentPopover($event)"></ion-icon>
           </div>
+         <!-- <ion-item>
+           <input type="file" name="file" hidden #input ngModel (change)="getPicture($event)"/> 
+          </ion-item> -->
           <ion-popover #popover [isOpen]="isOpen"
            size="" (didDismiss)="isOpen = false"
            style="--width: 100px;">
             <ng-template class="pop"> 
                 <ion-list  id="list">
                   <ion-item>
-                    <ion-content (click)="takePicture()">Photo</ion-content>
+                    <ion-content  (click)="takePicture(); input1.click()" >Photo</ion-content>
+                    <input type="file" hidden #input1 ngModel (change)="getPicture($event)"/>
                   </ion-item>
                  
                   <ion-item>
-                    <ion-content  (click)="chooseFromGallery()">Gallerie</ion-content>
+                    <ion-content  (click)="chooseFromGallery();input2.click()" >Gallerie</ion-content>
+                    <input type="file" hidden #input2 ngModel (change)="getPicture($event)"/> 
                   </ion-item>
+                  
                 </ion-list>
              
             </ng-template>
@@ -64,7 +70,7 @@
                 <ion-label class="data">{{type}}</ion-label>
               </ion-item>
               <ion-item>
-                <ion-button style="--background: #FF5733" >Modifier</ion-button> 
+                <ion-button style="--background: #FF5733" (click)="showPopover($event)" >Modifier</ion-button> 
               </ion-item>
             </ion-list>
           </div>
@@ -86,14 +92,14 @@
       <div *ngIf="tabSegment.value==2">
           <ion-list >
             <ion-item (click)="showMessage()">
-              <ion-img id="img-person" src="../../../../assets/images/user.jpg"></ion-img>
+              <ion-img id="img-person" src="assets/images/user.jpg"></ion-img>
               <div class="message">
                   <p id="nom"><strong>Chrisnor</strong></p>
                   <p id="text-message">Mwen nan wout map vini</p>
               </div>
             </ion-item>
             <ion-item (click)="showMessage()">
-              <ion-img id="img-person" src="../../../../assets/images/user.jpg"></ion-img>
+              <ion-img id="img-person" src="assets/images/user.jpg"></ion-img>
               <div class="message">
                   <p id="nom"><strong>Sherley</strong></p>
                   <p id="text-message">Ou dodo b?</p>

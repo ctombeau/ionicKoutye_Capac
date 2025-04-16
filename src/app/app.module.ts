@@ -13,11 +13,12 @@ import { HTTP_INTERCEPTORS, HttpClient, HttpClientModule } from '@angular/common
 import { UserService } from './services/user.service';
 import { UserHomePage } from './pages/user/user-home/user-home.page';
 import { AuthInterceptor } from './interceptors/auth.interceptor';
+import { PopoverUpdateUserComponent } from './components/popover-update-user/popover-update-user.component';
 //import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 
 
 @NgModule({
-  declarations: [AppComponent],
+  declarations: [AppComponent, PopoverUpdateUserComponent],
   imports: [
     BrowserModule,
     IonicModule.forRoot(),

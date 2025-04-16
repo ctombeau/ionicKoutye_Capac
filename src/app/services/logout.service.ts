@@ -18,6 +18,7 @@ export class LogoutService {
     sessionStorage.removeItem("nom");
     sessionStorage.removeItem("prenom");
     sessionStorage.removeItem("nomType");
+    sessionStorage.removeItem("photo");
     this.router.navigate(['/login']);
   }
 }

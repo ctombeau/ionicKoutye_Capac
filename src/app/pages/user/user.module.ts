@@ -8,11 +8,13 @@ import { ForgotpasswordPage } from './forgotpassword/forgotpassword.page';
 import { ForgotpasswordPageModule } from './forgotpassword/forgotpassword.module';
 import { UserHomePageModule } from './user-home/user-home.module';
 import { UserHomePage } from './user-home/user-home.page';
+import { PopoverUpdateUserComponent } from 'src/app/components/popover-update-user/popover-update-user.component';
+import { IonicModule } from '@ionic/angular';
 
 
 @NgModule({
   declarations: [
-    
+    //PopoverUpdateUserComponent
   ],
   imports: [
     CommonModule,
@@ -20,7 +22,8 @@ import { UserHomePage } from './user-home/user-home.page';
     RegisterPageModule,
     ResetpasswordPageModule,
     ForgotpasswordPageModule,
-    UserHomePageModule
+    UserHomePageModule,
+    IonicModule
   ]
 })
 export class UserModule { }

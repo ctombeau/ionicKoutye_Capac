@@ -66,5 +66,8 @@ export class LoginService {
       sessionStorage.setItem(this.nom,userInfo.nom);
       sessionStorage.setItem(this.prenom,userInfo.prenom);
       sessionStorage.setItem(this.nomType,userInfo.nomType);
+      sessionStorage.setItem(this.photo,userInfo.photo);
   }
+
+  
 }

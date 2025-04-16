@@ -19,11 +19,8 @@ ion-toolbar{
    height: 15px;
 }
 
-#content-menu :hover {
-   --background:#3880ff;
-   border : 1px solid #3880ff;
-   border-radius: 20px;
-   color: white;
+#content-menu .item-menu a :hover {
+   color:#3880ff ;
 }
 
 #img

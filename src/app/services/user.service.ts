@@ -27,4 +27,8 @@ export class UserService {
    public processForgotPassword(email: string){
     return this.http.get(this.url+"/send-email?emailTo="+ email);
   }
+
+  public setPicture(formData: FormData){
+    return this.http.post(this.url+"/update-picture",formData);
+  }
 }
