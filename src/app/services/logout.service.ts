@@ -13,6 +13,7 @@ export class LogoutService {
 
   logout(){
     sessionStorage.removeItem("token");
+    sessionStorage.removeItem("id");
     sessionStorage.removeItem("username");
     sessionStorage.removeItem("email");
     sessionStorage.removeItem("nom");

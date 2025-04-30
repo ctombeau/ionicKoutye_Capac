@@ -1,9 +1,12 @@
+import { HttpErrorResponse } from '@angular/common/http';
 import { AfterViewInit, Component, Input, OnInit, ViewChild } from '@angular/core';
 import { Router } from '@angular/router';
 import { Camera, CameraResultType, CameraSource } from '@capacitor/camera';
 import { PopoverController } from '@ionic/angular';
 import { PopoverUpdateUserComponent } from 'src/app/components/popover-update-user/popover-update-user.component';
+import { User } from 'src/app/model/user';
 import { UserService } from 'src/app/services/user.service';
+import Swal from 'sweetalert2';
 
 
 @Component({
@@ -20,18 +23,21 @@ export class UserHomePage implements OnInit, AfterViewInit {
     private popoverCtrl: PopoverController
   ) { }
   @Input() showTabs = false;
-
-  nom: any= sessionStorage.getItem("nom");
-  prenom: any= sessionStorage.getItem("prenom");
+  
+  user : any;
+  nom: any= "";
+  prenom: any= "";
+  id: any = sessionStorage.getItem("id") ?? "" ;; //+this.user.utilisateurId;
   username: any= sessionStorage.getItem("username");
-  email: any= sessionStorage.getItem("email");
-  type: any= sessionStorage.getItem("nomType");
-  phone: string= sessionStorage.getItem("phone")?.toUpperCase() ?? "";
+  email: any= "";
+  type: any= "";
+  phone: string= "";
   photo: string = sessionStorage.getItem("photo") ?? "";
   index= this.photo?.lastIndexOf("assets");
   subPhoto : string= this.photo?.substring(this.index);
   imageUrl: string | ArrayBuffer | null= this.subPhoto=="" ? "assets/images/user.jpg" : this.subPhoto;
   selectedFile: File | null = null;
+  usernameIsChanged : boolean = false;
 
   @ViewChild('popover') popover!: HTMLIonPopoverElement;
 
@@ -49,7 +55,7 @@ export class UserHomePage implements OnInit, AfterViewInit {
   }
 
   ngOnInit() {
-    
+    this.getUser(); 
   }
  
   
@@ -113,11 +119,31 @@ export class UserHomePage implements OnInit, AfterViewInit {
       });
 
       this.imageUrl = image.webPath ?? ""; 
-      console.warn(this.imageUrl)
+      
     } catch (error) {
       console.error("Erreur lors du choix de l'image : ", error);
     }
   }
+  
+  public getUser() : void
+    {
+       console.log("On test getUser()");
+       this.userService.getUser(this.username).subscribe(
+           (data: any)=>{
+               this.user = data.object;
+               this.nom = data.object.nom;
+               this.prenom= data.object.prenom;
+               this.username = data.object.username;
+               this.email = data.object.email;
+               this.type = data.object.nomType;
+               this.phone = data.object.phone;
+               this.photo = data.object.photo;
+           },
+           (error: HttpErrorResponse)=>{
+              console.log("erreur constatee: "+ error.message);
+           }
+       );
+    }
 
   getPicture(event: any){
     console.log("Oui getPicture()")
@@ -146,19 +172,78 @@ export class UserHomePage implements OnInit, AfterViewInit {
      
   }
 
+  updateUser(user: User){
+  
+    this.userService.putUser(this.id,user).subscribe(
+        (response: any)=>{
+         console.log(response.success)
+          if(response.success==true){
+              if(this.usernameIsChanged==true){
+               Swal.fire({text:'Utilisateur modifié avec succès',
+                icon:'success',
+                width:'200px',
+                heightAuto:false
+              }).then((result)=>{
+                      if(result.isConfirmed) {
+                        this.getUser();
+                        this.router.navigateByUrl('/');
+                      }  
+                 });
+              }
+              else{
+               Swal.fire({text:'Utilisateur modifié avec succès',
+                icon:'success',
+                width:'200px',
+                heightAuto:false
+                }).then((result)=>{
+                      if(result.isConfirmed) {
+                         this.getUser(); 
+                         this.router.navigateByUrl(this.router.url);
+                      }  
+                 });
+              }
+          }
+
+        },(error: HttpErrorResponse)=>{
+            if(error.status===500){
+               console.log(error)
+            }
+      })
+   
+  }
+
+
   async showPopover(ev : any){
      const popover = await this.popoverCtrl.create({
         component: PopoverUpdateUserComponent,
         event: ev,
         translucent: false,
-        showBackdrop:true
+        showBackdrop:true,
+        componentProps:{
+              nom: this.nom,
+              prenom:this.prenom,
+              username:this.username,
+              email:this.email,
+              phone:this.phone
+        }
+        
      })
-
+     console.log(ev)
      await popover.present();
 
      const {data} = await popover.onDidDismiss();
      if(data){
+        
         console.log("Formulaire soumis avec: ", data)
+        //const user  = new User(nom, prenom, username, email, "", "", phone, "");
+          if(data.username!==this.username){
+             this.usernameIsChanged=true;
+             this.updateUser(data);
+          }
+          else{
+              this.usernameIsChanged=false;
+              this.updateUser(data);
+          }
      }
   }
  

@@ -12,6 +12,7 @@ export class LoginService {
   url : string = environment.baseUrl;
   isUrl : boolean = false;
   private token = "token";
+  private id ="id";
   private nom = "nom";
   private prenom = "prenom";
   private username="username";
@@ -46,7 +47,7 @@ export class LoginService {
                    this.spinnerLogin$.next(false);
                    this.messsageLogin$.next("Nom utilisateur et/ou mot de passe incorrect.");
                }
-               else if(err.status===500){
+               else if(err.status===500 || err.status===0){
                   this.spinnerLogin$.next(false);
                   this.messsageLogin$.next("Erreur serveur");
                }
@@ -61,6 +62,7 @@ export class LoginService {
 
   saveUserInfo(token: any, userInfo: any){
       sessionStorage.setItem(this.token,token);
+      sessionStorage.setItem(this.id,userInfo.utilisateurId)
       sessionStorage.setItem(this.username,userInfo.username);
       sessionStorage.setItem(this.email,userInfo.email);
       sessionStorage.setItem(this.nom,userInfo.nom);

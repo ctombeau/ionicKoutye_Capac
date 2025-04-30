@@ -2,29 +2,29 @@
   <ion-content class="ion-padding">
   <form id="contact-form" (ngSubmit)="submitForm()">
     <ion-item>
-      <ion-input type="text" id="nom" label="Nom" labelPlacement="floating" 
+      <ion-input type="text" id="nom" label="Nom" name="nom" labelPlacement="floating" 
       [(ngModel)]="formData.nom" placeholder="Nom"></ion-input>
     </ion-item>
     <ion-item>
-      <ion-input type="text" id="prenom" label="Prenom" labelPlacement="floating" 
+      <ion-input type="text" id="prenom" label="Prenom" name="prenom" labelPlacement="floating" 
       [(ngModel)]="formData.prenom" placeholder="Prenom"></ion-input>
     </ion-item>
     <ion-item>
-      <ion-input type="text" id="username" label="Username" labelPlacement="floating" 
-      [(ngModel)]="formData.username" placeholder="Username"></ion-input>
+      <ion-input type="text" id="username" label="Username" name="username" labelPlacement="floating" 
+      [(ngModel)]="formData.username"  placeholder="Username" ></ion-input>
     </ion-item>
     <ion-item>
-      <ion-input type="email" id="email" label="Email" labelPlacement="floating" 
+      <ion-input type="email" id="email" label="Email" name="email" labelPlacement="floating" 
       [(ngModel)]="formData.email" placeholder="Email"></ion-input>
     </ion-item>
     <ion-item>
-      <ion-input type="text" id="phone" label="Phone" labelPlacement="floating"  
+      <ion-input type="text" id="phone" label="Phone" name="phone" labelPlacement="floating"  
       [(ngModel)]="formData.phone" placeholder="Phone"></ion-input>
     </ion-item>
 
     <ion-item>
       <ion-button type="submit" expand="block" color="primary">Envoyer</ion-button>
-      <ion-button  expand="block" color="secondary">Annuler</ion-button>
+      <ion-button  expand="block" color="secondary" (click)="goback()">Annuler</ion-button>
     </ion-item>
   </form>
 </ion-content>

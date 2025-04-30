@@ -24,8 +24,18 @@ export class UserService {
     return this.http.post(this.url+"/user/add",user);
    }
 
+   public putUser(id: number,user: User){
+    return this.http.put(this.url+"/user/update/"+id,user);
+   }
+
    public processForgotPassword(email: string){
     return this.http.get(this.url+"/send-email?emailTo="+ email);
+  }
+ 
+  public getUser(username : string) : Observable<any>
+  {
+     return this.http.get(this.url + "/user?username="+username);
+     
   }
 
   public setPicture(formData: FormData){
