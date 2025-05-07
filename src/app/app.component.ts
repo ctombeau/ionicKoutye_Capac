@@ -6,6 +6,7 @@ import { takeUntil, filter } from 'rxjs/operators';
 import { UserService } from './services/user.service';
 import { IonTabs } from '@ionic/angular';
 import { LogoutService } from './services/logout.service';
+import { NetworkService } from './services/network.service';
 
 @Component({
   selector: 'app-root',
@@ -16,10 +17,16 @@ import { LogoutService } from './services/logout.service';
 export class AppComponent implements OnInit, OnDestroy{
   closed$ = new Subject<any>();
   showTabs : boolean = false;
+  isOnline = true;
 
   constructor(private _router: Router, private userService: UserService,
-     private logoutService : LogoutService
-  ) { }
+     private logoutService : LogoutService,
+     private networkService: NetworkService
+  ) { 
+     this.networkService.online$.subscribe(status=>{
+         this.isOnline=status;
+     })
+  }
 
   ngOnInit() {
     
@@ -39,6 +46,10 @@ export class AppComponent implements OnInit, OnDestroy{
   
   ngOnDestroy() {
     this.closed$.next(0); // <-- close subscription when component is destroyed
+  }
+
+  reloadPage() {
+   window.location.reload();
   }
 
    goToHome(){

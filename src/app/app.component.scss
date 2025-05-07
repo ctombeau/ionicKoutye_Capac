@@ -9,6 +9,18 @@ ion-tab-bar:hover, ion-tab-button:hover{
 }
 */
 
+.offline-banner {
+    background: #ffcccc;
+    color: #900;
+    padding: 10px;
+    text-align: center;
+    position: fixed;
+    top: 0;
+    width: 100%;
+    z-index: 1000;
+  }
+  
+
 ion-tab-button{
     --background-focused: #FF5733;
     --color-selected: #FF5733;

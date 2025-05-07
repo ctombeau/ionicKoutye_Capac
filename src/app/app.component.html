@@ -1,3 +1,7 @@
+<div *ngIf="!isOnline" class="offline-banner">
+  <p>🛑 Vous êtes hors connexion.</p>
+  <button (click)="reloadPage()">🔁 Recharger</button>
+</div>
 <ion-app>
   <ion-router-outlet></ion-router-outlet>
   <ion-tabs >
