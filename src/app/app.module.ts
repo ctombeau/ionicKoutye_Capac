@@ -25,7 +25,9 @@ import { PopoverUpdateUserComponent } from './components/popover-update-user/pop
     AppRoutingModule,
     FormsModule,
     UserModule,
-    HttpClientModule
+    HttpClientModule,
+    ReactiveFormsModule
+
    // MatSpinnerModule
       ],
   providers: [{ provide: RouteReuseStrategy, useClass: IonicRouteStrategy },

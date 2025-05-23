@@ -10,6 +10,7 @@ import { UserHomePageModule } from './user-home/user-home.module';
 import { UserHomePage } from './user-home/user-home.page';
 import { PopoverUpdateUserComponent } from 'src/app/components/popover-update-user/popover-update-user.component';
 import { IonicModule } from '@ionic/angular';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 
 @NgModule({
@@ -23,7 +24,9 @@ import { IonicModule } from '@ionic/angular';
     ResetpasswordPageModule,
     ForgotpasswordPageModule,
     UserHomePageModule,
-    IonicModule
+    IonicModule,
+    FormsModule,
+    ReactiveFormsModule
   ]
 })
 export class UserModule { }

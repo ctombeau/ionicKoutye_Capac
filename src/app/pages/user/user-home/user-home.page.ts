@@ -1,8 +1,10 @@
 import { HttpErrorResponse } from '@angular/common/http';
 import { AfterViewInit, Component, Input, OnInit, ViewChild } from '@angular/core';
+import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { Camera, CameraResultType, CameraSource } from '@capacitor/camera';
 import { PopoverController } from '@ionic/angular';
+import { BehaviorSubject } from 'rxjs';
 import { PopoverUpdateUserComponent } from 'src/app/components/popover-update-user/popover-update-user.component';
 import { User } from 'src/app/model/user';
 import { UserService } from 'src/app/services/user.service';
@@ -12,7 +14,7 @@ import Swal from 'sweetalert2';
 @Component({
   selector: 'app-user-home',
   templateUrl: './user-home.page.html',
-  styleUrls: ['./user-home.page.scss'],
+  styleUrls: ['./user-home.page.scss']
 })
 export class UserHomePage implements OnInit, AfterViewInit {
 
@@ -29,7 +31,7 @@ export class UserHomePage implements OnInit, AfterViewInit {
   prenom: any= "";
   id: any = sessionStorage.getItem("id") ?? "" ;; //+this.user.utilisateurId;
   username: any= sessionStorage.getItem("username");
-  email: any= "";
+  email: any= sessionStorage.getItem("email");
   type: any= "";
   phone: string= "";
   photo: string = sessionStorage.getItem("photo") ?? "";
@@ -38,6 +40,7 @@ export class UserHomePage implements OnInit, AfterViewInit {
   imageUrl: string | ArrayBuffer | null= this.subPhoto=="" ? "assets/images/user.jpg" : this.subPhoto;
   selectedFile: File | null = null;
   usernameIsChanged : boolean = false;
+  isLoading : BehaviorSubject<boolean> = new BehaviorSubject<boolean>(false);
 
   @ViewChild('popover') popover!: HTMLIonPopoverElement;
 
@@ -58,6 +61,12 @@ export class UserHomePage implements OnInit, AfterViewInit {
     this.getUser(); 
   }
  
+  courtierForm = new FormGroup({
+    email : new FormControl("",[
+       Validators.required,
+    ]),
+    
+  })
   
   async changeSegment(event : any)
   {
@@ -246,5 +255,43 @@ export class UserHomePage implements OnInit, AfterViewInit {
           }
      }
   }
+
+  askToAttachUser(){
+    this.isLoading.next(true);
+    const emailFrom = this.email??"";
+    const emailTo= this.courtierForm.value.email?? "";
+    this.userService.sendMailAttachUser(emailFrom, emailTo).subscribe((response : any)=>{
+          this.isLoading.next(false);
+            if(response.success===true){
+               //this.utilsService.showMessage("Mail envoyé avec succès.", "success")
+               Swal.fire({
+                  text: "Mail envoyé avec succès.",
+                  icon: "success",
+                  width: '200px',
+                  heightAuto: false
+              });
+              this.courtierForm.reset();
+            }
+            else{
+              //this.utilsService.showMessage("Erreur lors de l'envoi d'email.", "error")
+              Swal.fire({
+                text: "Erreur lors de l'envoi d'email.",
+                icon: "error",
+                width: '200px',
+                heightAuto: false
+               });
+               this.courtierForm.reset();
+            }
+      }, (error : HttpErrorResponse)=>{
+              this.isLoading.next(false);
+              Swal.fire({
+                text: "Erreur lors de l'envoi d'email.",
+                icon: "error",
+                width: '200px',
+                heightAuto: false
+               });
+               this.courtierForm.reset();
+      });
+ }
  
 }

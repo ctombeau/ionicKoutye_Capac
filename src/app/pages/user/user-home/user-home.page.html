@@ -80,6 +80,23 @@
       </div>
       <div *ngIf="tabSegment.value==1">
           <div class="courtier">
+            <form [formGroup]="courtierForm"  (ngSubmit)="askToAttachUser()">
+            <ion-card >
+              <ion-card-header>
+                <ion-card-subtitle>Demande d'attachement</ion-card-subtitle>
+              </ion-card-header>
+
+              <ion-card-content>
+                  <ion-item>
+                    <ion-input type="email" formControlName="email" label="Email" labelPlacement="floating" placeholder="Enter text"></ion-input>
+                  </ion-item>
+                  <ion-button type="submit" shape="round" expand="block" size="small">
+                     <ion-icon  name="send"></ion-icon>
+                      Envoyer
+                    </ion-button>
+                </ion-card-content>
+          </ion-card>
+          </form>
             <ion-grid>
               <ion-row>
                 <ion-col>Nom</ion-col>
@@ -87,6 +104,10 @@
                 <ion-col>username</ion-col>
               </ion-row>
             </ion-grid>
+          </div>
+          <div class="spinner-container" *ngIf="isLoading |async">
+              <ion-spinner class="spinner" name="crescent" color="danger"></ion-spinner>
+              <ion-img src="assets/images/logoKoutye.PNG"></ion-img>
           </div>
       </div>
       <div *ngIf="tabSegment.value==2">

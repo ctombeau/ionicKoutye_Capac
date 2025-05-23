@@ -31,6 +31,15 @@ export class UserService {
    public processForgotPassword(email: string){
     return this.http.get(this.url+"/send-email?emailTo="+ email);
   }
+
+  public processResetPassword(body : any){
+    return this.http.post(this.url+"/reset-password", body);
+  }
+
+  public sendMailAttachUser(emailFrom: string,emailTo : string): Observable<any>{
+      
+      return this.http.get(this.url+"/send-email-attachment?emailFrom="+emailFrom+"&emailTo="+emailTo);
+  }
  
   public getUser(username : string) : Observable<any>
   {
