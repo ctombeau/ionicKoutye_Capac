@@ -41,6 +41,7 @@ export class UserHomePage implements OnInit, AfterViewInit {
   selectedFile: File | null = null;
   usernameIsChanged : boolean = false;
   isLoading : BehaviorSubject<boolean> = new BehaviorSubject<boolean>(false);
+  users! : User[];
 
   @ViewChild('popover') popover!: HTMLIonPopoverElement;
 
@@ -59,6 +60,7 @@ export class UserHomePage implements OnInit, AfterViewInit {
 
   ngOnInit() {
     this.getUser(); 
+    this.attachUser();
   }
  
   courtierForm = new FormGroup({
@@ -180,6 +182,26 @@ export class UserHomePage implements OnInit, AfterViewInit {
     }
      
   }
+
+  attachUser()
+  {
+    this.userService.getAttachUsers(this.username?? "").subscribe(
+       (data: any)=>{
+           this.users = (data.object ?? []).map((user: User) => ({
+                     ...user,
+                photo: user.photo ? user.photo.substring(user.photo.lastIndexOf("assets")) : 'assets/images/user.jpg'
+           }));
+           
+           console.log(this.users)
+       },(error : HttpErrorResponse)=>{
+            Swal.fire({
+                text: "Erreur lors de la récupération des utilisateurs.",
+                icon: "error",
+                width:'200px',
+                heightAuto:false
+           });
+       });
+ }
 
   updateUser(user: User){
   

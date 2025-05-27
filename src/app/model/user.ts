@@ -1,13 +1,13 @@
 export class User {
    // private userId: number;
-    private nom: string;
-    private prenom: string;
-    private username: string;
-    private email: string;
-    private password: string;
-    private phone: string;
-    private photo: string;
-    private nomType: string;
+    public nom: string;
+    public prenom: string;
+    public username: string;
+    public email: string;
+    public password: string;
+    public phone: string;
+    public photo: string;
+    public nomType: string;
 
     constructor(nom: string, prenom: string, username: string, 
         email: string, password: string, photo: string, phone: string, nomType: string)

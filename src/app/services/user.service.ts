@@ -40,6 +40,11 @@ export class UserService {
       
       return this.http.get(this.url+"/send-email-attachment?emailFrom="+emailFrom+"&emailTo="+emailTo);
   }
+
+  public getAttachUsers(username: string)
+  {
+     return this.http.get(this.url+"/show-attach-users?username="+username);      
+  }
  
   public getUser(username : string) : Observable<any>
   {

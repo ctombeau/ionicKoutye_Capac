@@ -97,13 +97,19 @@
                 </ion-card-content>
           </ion-card>
           </form>
-            <ion-grid>
-              <ion-row>
-                <ion-col>Nom</ion-col>
-                <ion-col>prenom</ion-col>
-                <ion-col>username</ion-col>
-              </ion-row>
-            </ion-grid>
+            <ion-list>
+                <ion-item *ngFor="let user of users">
+                    <ion-avatar slot="start">
+                      <img [src]="user.photo"/>
+                    </ion-avatar>
+                    <ion-label>
+                          <h2>{{ user.nom |uppercase }} {{ user.prenom }}</h2>
+                          <p>{{ user.email }}</p>
+                          <p>{{user.phone}}</p>
+                    </ion-label>
+                </ion-item>
+          </ion-list>
+
           </div>
           <div class="spinner-container" *ngIf="isLoading |async">
               <ion-spinner class="spinner" name="crescent" color="danger"></ion-spinner>
