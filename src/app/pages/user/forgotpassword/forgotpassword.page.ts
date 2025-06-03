@@ -51,13 +51,22 @@ export class ForgotpasswordPage implements OnInit {
               }
               else{
                 this.isLoading.next(false);
+                Swal.fire({
+                      text: "Erreur lors de l'envoi d'email...",
+                      width:'200px',
+                      icon: 'error',
+                      heightAuto: false
+                  });
               }
             }),
             catchError((error : Error)=>{
                this.isLoading.next(false);
-                if(error.name==""){
-
-                }
+                Swal.fire({
+                      text: "Erreur lors de l'envoi d'email...",
+                      width:'200px',
+                      icon: 'error',
+                      heightAuto: false
+                  });
                 return "";
             })
      ).subscribe();

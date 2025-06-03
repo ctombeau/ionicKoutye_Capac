@@ -11,6 +11,7 @@ import { UserService } from 'src/app/services/user.service';
 })
 export class ResetpasswordPage implements OnInit {
    message : string="";
+
   constructor(private userService : UserService,
     private router: Router
   ) { }
@@ -35,7 +36,7 @@ export class ResetpasswordPage implements OnInit {
 });
 
   public resetPassword()
- {
+ {console.log("appel de la methode")
     if(this.resetPasswordForm.value.newPassword==this.resetPasswordForm.value.newPassword2){
         this.userService.processResetPassword(this.resetPasswordForm.value).subscribe((data:any)=>{
         console.log(data)
