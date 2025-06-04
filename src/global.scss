@@ -121,11 +121,11 @@
 
  .card-title-block {
     display: flex;
-    flex-direction: column;
+    flex-direction: row;
   }
 
   .text-title {
-    font-size: 1.3rem;
+    font-size: 0.9rem;
     font-weight: bold;
     margin: 0;
     color: #000;
@@ -134,7 +134,7 @@
   .text-body {
     color: rgb(134, 134, 134);
     margin: 4px 0;
-    font-size: 0.8rem;
+    font-size: 0.7rem;
   }
 
   .card-button {
@@ -143,7 +143,7 @@
     border-radius: 1rem;
     border: none;
     color: #fff;
-    font-size: 0.8rem;
+    font-size: 0.7rem;
     padding: 0.5rem 1rem;
     position: absolute;
     left: 50%;
@@ -156,6 +156,7 @@
   &:hover .card-button {
     transform: translate(-50%, 50%);
     opacity: 1;
+    z-index: 10;
   }
 }
 /*Fin Css pour les cards*/
