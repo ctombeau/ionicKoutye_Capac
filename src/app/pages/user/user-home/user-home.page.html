@@ -49,11 +49,13 @@
           </ion-popover>
           <ion-card class="user-card" >
             <ion-card-content>
-              <p class="text-body"><strong>Nom</strong> {{ nom }}</p>
-              <p class="text-body"><strong>Pr&eacute;nom</strong> {{ prenom }}</p>
-              <p class="text-body"><strong>Username</strong> {{ username }}</p>
-              <p class="text-body"><strong>Email</strong> {{ email }}</p>
-              <p class="text-body"><strong>Type</strong> {{ type }}</p>
+              <p class="text-body text-center" style="font-size: large;" ><strong>
+                {{ nom | uppercase}} {{ prenom }}</strong> </p>
+              <p class="text-body"><strong><ion-icon class="icon-card" name="person-outline"></ion-icon> 
+              </strong>  {{ username }}</p>
+              <p class="text-body"><strong><ion-icon class="icon-card" name="mail-outline"></ion-icon> 
+                </strong> {{ email }} </p>
+              <p class="text-body"><strong><ion-icon class="icon-card" name="call-outline"></ion-icon></strong>{{ phone }} </p>
             </ion-card-content>
              <ion-button class="card-button" expand="block" shape="around"  (click)="showPopover($event)" >Modifier</ion-button> 
           </ion-card>
@@ -94,8 +96,9 @@
                   </div>
               </ion-card-header>
               <ion-card-content>
-                <p class="text-body"><strong>Email:</strong> {{ user.email }}</p>
-                <p class="text-body"><strong>Téléphone:</strong> {{ user.phone }}</p>
+                <p class="text-body"><strong><ion-icon class="icon-card" name="mail-outline"></ion-icon> 
+                </strong> {{ user.email }}</p>
+                <p class="text-body"><strong><ion-icon class="icon-card" name="call-outline"></ion-icon></strong> {{ user.phone }}</p>
               </ion-card-content>
               <ion-button class="card-button" expand="block" color="primary" size="small" shape="round">
                   <ion-icon name="trash"></ion-icon> Détacher
