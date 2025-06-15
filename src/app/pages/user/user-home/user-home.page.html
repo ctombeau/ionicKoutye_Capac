@@ -57,7 +57,7 @@
                 </strong> {{ email }} </p>
               <p class="text-body"><strong><ion-icon class="icon-card" name="call-outline"></ion-icon></strong>{{ phone }} </p>
             </ion-card-content>
-             <ion-button class="card-button" expand="block" shape="around"  (click)="showPopover($event)" >Modifier</ion-button> 
+             <ion-button class="backdrop" class="card-button" expand="block" shape="around"  (click)="showPopover($event)" >Modifier</ion-button> 
           </ion-card>
         </div>
           
@@ -100,7 +100,8 @@
                 </strong> {{ user.email }}</p>
                 <p class="text-body"><strong><ion-icon class="icon-card" name="call-outline"></ion-icon></strong> {{ user.phone }}</p>
               </ion-card-content>
-              <ion-button class="card-button" expand="block" color="primary" size="small" shape="round">
+              <ion-button class="card-button" expand="block" color="primary" size="small" shape="round"
+               (click)="detachUser(user.username,user.nom, user.prenom)">
                   <ion-icon name="trash"></ion-icon> Détacher
               </ion-button>
            </ion-card>

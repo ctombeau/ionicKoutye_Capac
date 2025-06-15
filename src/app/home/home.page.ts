@@ -14,9 +14,7 @@ export class HomePage implements OnInit{
   constructor(private appService : AppartementService) {}
    
   ngOnInit(): void {
-   // console.log("Dans home : "+this.username);
       this.listAppartementByUsername();
-      //this.addListeners();
   }
    
     listAppartementByUsername(): Observable<Appartement[]>{

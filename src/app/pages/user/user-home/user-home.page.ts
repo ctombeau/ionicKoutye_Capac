@@ -316,4 +316,41 @@ export class UserHomePage implements OnInit, AfterViewInit {
       });
  }
  
+  detachUser(usernameCour : string, nom: string, prenom: string){
+    Swal.fire({
+      title: nom + " " + prenom,
+      text: "Voulez-vous le supprimer?",
+      icon: "warning",
+      showCancelButton: true,
+      confirmButtonColor: "#3085d6",
+      cancelButtonColor: "#d33",
+      confirmButtonText: "Oui, Supprimez-le",
+      cancelButtonText:"Annuler",
+      width:'200px',
+      heightAuto: false
+      }).then((result) => {
+          if (result.isConfirmed) {
+                this.userService.processDetachUser(this.username??"",usernameCour).subscribe(
+                   (data)=>{
+                          Swal.fire({
+                      title: "Supprimé!",
+                      text: "Votre courtier a été supprimé.",
+                      icon: "success",
+                      width:'200px',
+                      heightAuto: false
+                    });
+                   },(error: HttpErrorResponse)=>{
+                      
+                       Swal.fire({
+                        title: "Supprimé!",
+                        text: "Erreur lors de la suppression.",
+                        icon: "error",
+                        width:'200px',
+                        heightAuto: false
+                     });
+                   }
+                )
+           }
+      });
+  }
 }

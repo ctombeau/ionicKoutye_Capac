@@ -36,7 +36,7 @@ export class PopoverUpdateUserComponent  implements OnInit {
   }
 
   submitForm(){
-     this.popoverCtrl.dismiss(this.formData)
+     this.popoverCtrl.dismiss(this.formData);
   }
   
   goback(){
