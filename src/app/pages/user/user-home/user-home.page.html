@@ -21,9 +21,10 @@
             <div id="banner">
               
             </div>
-          <div id="image-user" >
-              <img id="photo" [src]="imageUrl"/>
-              <ion-icon name="camera" id="camera" (click)="presentPopover($event)"></ion-icon>
+          <div id="image-user" clas="profile-picture-container">
+              <img id="photo" [src]="imageUrl" class="profile-picture"/>
+              <!-- <ion-icon name="camera" id="camera" (click)="presentPopover($event)"></ion-icon> -->
+              <ion-icon name="camera" id="camera" (click)="openPhotoOptions($event)"></ion-icon>
           </div>
          <!-- <ion-item>
            <input type="file" name="file" hidden #input ngModel (change)="getPicture($event)"/> 

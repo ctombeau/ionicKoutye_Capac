@@ -3,7 +3,7 @@ import { AfterViewInit, Component, Input, OnInit, ViewChild } from '@angular/cor
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { Camera, CameraResultType, CameraSource } from '@capacitor/camera';
-import { PopoverController } from '@ionic/angular';
+import { ActionSheetController, PopoverController } from '@ionic/angular';
 import { BehaviorSubject } from 'rxjs';
 import { PopoverUpdateUserComponent } from 'src/app/components/popover-update-user/popover-update-user.component';
 import { User } from 'src/app/model/user';
@@ -22,7 +22,8 @@ export class UserHomePage implements OnInit, AfterViewInit {
 
   constructor(private router: Router,
     private userService : UserService,
-    private popoverCtrl: PopoverController
+    private popoverCtrl: PopoverController,
+    private actionSheetCtrl: ActionSheetController
   ) { }
   @Input() showTabs = false;
   
@@ -202,6 +203,53 @@ export class UserHomePage implements OnInit, AfterViewInit {
            });
        });
  }
+
+ async openPhotoOptions(e :Event) {
+  console.log("Test de la methode")
+    const actionSheet = await this.actionSheetCtrl.create({
+      header: 'Photo de profil',
+      buttons: [
+        {
+          text: 'Mettre à jour la photo',
+          icon: 'camera',
+          handler: () => {
+            console.log('Mettre à jour');
+            //this.takePicture(); 
+            this. presentPopover(e);
+          }
+        },
+        {
+          text: 'Supprimer la photo',
+          icon: 'trash',
+          role: 'destructive',
+          handler: () => {
+            console.log('Supprimer');
+            this.deletePicture(); // à définir
+          }
+        },
+        {
+          text: 'Annuler',
+          icon: 'close',
+          role: 'cancel'
+        }
+      ]
+    });
+     await actionSheet.present();
+  }
+
+  deletePicture(){
+    const payload = {
+        path: this.subPhoto,
+        username: this.username
+    };
+    console.log(payload)
+    this.userService.deletePicture(payload).subscribe((data: any)=>{
+         console.log(data);
+    },(error:HttpErrorResponse)=>{
+       console.log(error);
+    })
+    
+  }
 
   updateUser(user: User){
   

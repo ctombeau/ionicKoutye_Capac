@@ -1,0 +1,37 @@
+<ion-header [translucent]="true">
+ 
+</ion-header>
+
+<ion-content [fullscreen]="true">
+  <ion-header collapse="condense">
+    <ion-toolbar>
+      <ion-title size="large">Appartement</ion-title>
+    </ion-toolbar>
+  </ion-header>
+
+  <ion-card class="mb-2 mt-5">
+      <div class="video">
+          <video width="100%" controls>
+            <source src="assets/videos/ma-video.mp4" type="video/mp4">
+            Votre navigateur ne supporte pas la vidéo HTML5.
+          </video>
+      </div>
+      <div class="paginator">
+          <mat-paginator [length]="100"
+              [pageSize]="10"
+              [pageSizeOptions]="[5, 10, 25, 100]"
+              aria-label="Select page">
+          </mat-paginator>
+      </div>
+      
+      <ion-card-header>
+        <ion-card-title>2,000.00 USD</ion-card-title>
+      </ion-card-header>
+    
+      <ion-card-content style="padding-bottom: 40px;">
+        <p><ion-icon name="information-circle"></ion-icon> Appartement de luxe avec 6 pieces</p>
+        <p><ion-icon name="location"></ion-icon> 13, Rue sibert, Croix-des-bouquets</p>
+        <p><ion-icon name="call"></ion-icon> (+509) 3805-1274</p>
+      </ion-card-content>
+    </ion-card>
+</ion-content>

@@ -59,4 +59,8 @@ export class UserService {
   public setPicture(formData: FormData){
     return this.http.post(this.url+"/update-picture",formData);
   }
+
+  public deletePicture(payload :any){
+     return this.http.post(this.url+"/delete-picture",payload);
+  }
 }

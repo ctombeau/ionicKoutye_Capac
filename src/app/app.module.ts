@@ -15,7 +15,8 @@ import { UserHomePage } from './pages/user/user-home/user-home.page';
 import { AuthInterceptor } from './interceptors/auth.interceptor';
 import { PopoverUpdateUserComponent } from './components/popover-update-user/popover-update-user.component';
 //import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
-
+import { MatPaginatorModule } from '@angular/material/paginator';
+import { provideAnimationsAsync } from '@angular/platform-browser/animations/async';
 
 @NgModule({
   declarations: [AppComponent, PopoverUpdateUserComponent],
@@ -26,8 +27,8 @@ import { PopoverUpdateUserComponent } from './components/popover-update-user/pop
     FormsModule,
     UserModule,
     HttpClientModule,
-    ReactiveFormsModule
-
+    ReactiveFormsModule,
+    MatPaginatorModule
    // MatSpinnerModule
       ],
   providers: [{ provide: RouteReuseStrategy, useClass: IonicRouteStrategy },
@@ -37,7 +38,8 @@ import { PopoverUpdateUserComponent } from './components/popover-update-user/pop
       provide: HTTP_INTERCEPTORS,
       useClass: AuthInterceptor,
       multi: true
-     }
+     },
+    provideAnimationsAsync()
   ],
   bootstrap: [AppComponent],
 })

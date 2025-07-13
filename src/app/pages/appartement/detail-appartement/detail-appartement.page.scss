@@ -1,0 +1,58 @@
+ion-icon{
+   color: #FF5733;
+  }
+
+   //bouton-detail
+ 
+#detail {
+  width: 80px;
+  height: 30px;
+  border: 3px solid #FF5733;
+  border-radius: 45px;
+  transition: all 0.3s;
+  cursor: pointer;
+  background: white;
+  font-size: 1em;
+  font-weight: 300;
+  margin: 10px;
+  position: absolute;
+  bottom: 0;
+  right: 0;
+}
+
+#detail:hover {
+  background: #FF5733;
+  color: white;
+  font-size: 0.6em;
+}
+
+.paginator {
+  padding: 8px;
+  overflow-x: auto;
+}
+
+.paginator mat-paginator {
+  display: flex !important;
+  flex-wrap: nowrap !important;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+}
+
+.paginator .mat-paginator-container {
+  flex-wrap: nowrap !important;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  width: 100%;
+  overflow-x: auto;
+}
+
+.paginator .mat-paginator-page-size,
+.paginator .mat-paginator-range-label,
+.paginator .mat-paginator-navigation-previous,
+.paginator .mat-paginator-navigation-next {
+  white-space: nowrap;
+  flex-shrink: 0;
+}
+

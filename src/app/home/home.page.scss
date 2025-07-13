@@ -41,4 +41,32 @@ ion-toolbar{
      
   }
 
+  ion-icon{
+   color: #FF5733;
+  }
+
+   //bouton-detail
+ 
+#detail {
+  width: 80px;
+  height: 30px;
+  border: 3px solid #FF5733;
+  border-radius: 45px;
+  transition: all 0.3s;
+  cursor: pointer;
+  background: white;
+  font-size: 1em;
+  font-weight: 300;
+  margin: 10px;
+  position: absolute;
+  bottom: 0;
+  right: 0;
+}
+
+#detail:hover {
+  background: #FF5733;
+  color: white;
+  font-size: 1em;
+}
+
   

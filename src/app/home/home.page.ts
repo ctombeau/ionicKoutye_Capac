@@ -3,6 +3,7 @@ import { AppartementService } from '../services/appartement.service';
 import { Observable, of } from 'rxjs';
 import { Appartement } from '../model/appartement.model';
 import { PushNotifications } from '@capacitor/push-notifications';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-home',
@@ -11,7 +12,9 @@ import { PushNotifications } from '@capacitor/push-notifications';
 })
 export class HomePage implements OnInit{
   username : any = sessionStorage.getItem("username");
-  constructor(private appService : AppartementService) {}
+  constructor(private appService : AppartementService,
+   private router: Router
+  ) {}
    
   ngOnInit(): void {
       this.listAppartementByUsername();
@@ -92,4 +95,8 @@ export class HomePage implements OnInit{
 
       }
       */
+
+      getDetailAppartment(){
+      this.router.navigateByUrl('detail-appartement');
+     }
 }
