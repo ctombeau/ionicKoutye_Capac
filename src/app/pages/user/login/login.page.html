@@ -5,31 +5,22 @@
     </ion-toolbar>
   </ion-header>
    
-  <div id="container">
+  <div class="container" id="container">
     <form  [formGroup]="loginForm" (ngSubmit)="Login()" (keyup.enter)="Login()">
-      <ion-card id="card">
-        <ion-card-header>
-          <!-- <ion-card-title color="primary">KOUTYE</ion-card-title> -->
-         
-        </ion-card-header>
-      
-        <ion-card-content>
           <div class="mt-2 mb-4">
-            <img src="/assets/images/logoKoutye.PNG" id="img"/>
+            <img src="/assets/images/logoKoutye2.png" id="img"/>
           </div>
           
           <span class="error" *ngIf="message$ |async as message">
              {{message}}
           </span>
           <ion-item>
-            <ion-input type="text" formControlName="username" label="Username" labelPlacement="floating" placeholder="Votre nom utilisateur" ngModel></ion-input>
+            <ion-input type="text" formControlName="username"  placeholder="Nom utilisateur" ngModel></ion-input>
           </ion-item>
   
           <ion-item>
-            <ion-input #inputPassword type="password" formControlName="password" label="Password" labelPlacement="floating" placeholder="Votre mot de passe" ngModel></ion-input>
+            <ion-input #inputPassword type="password" formControlName="password"  placeholder="Mot de passe" ngModel></ion-input>
             <ion-button slot="end" fill="clear"  id="button-icon"  (click)="showPassword(inputPassword)">
-             <!-- <ion-icon  *ngIf="showPsw==true" name="eye-outline" color="primary" class="iconEye"></ion-icon>
-              <ion-icon  *ngIf="showPsw==false"  name="eye-off-outline" color="primary" class="iconEye"></ion-icon> -->
             </ion-button>
           </ion-item>
           
@@ -38,24 +29,20 @@
           </div>
           
           <ion-button id="con" class="mt-3 mb-3" type="submit"  size="full"
-          [disabled]="!loginForm.valid"
-          style="--background: #FF5733;">
+          >
             CONNECTER  <i id="i-connect" class="bi bi-box-arrow-in-right"></i>
           </ion-button>
-          <p>ou connecter avec</p>
-              <div class="socio">
-                <i class="btn bi bi-facebook"></i>
-                <i class="btn bi bi-google"></i>
-                <i class="btn bi bi-twitter-x"></i>
-                <i class="btn bi bi-github"></i>
-              </div>
-          <ion-button id="nu" class="mb-3" style="background-color: white;" color="white"  size="full" fill="clear" [routerLink]="['/register']">
-            Nouvel utilisateur  <i id="i-add" class="bi bi-person-add"></i>
-          </ion-button>
-
-          <a color="dark" id="link-forgotpassword" class="mb-3"  routerLink="/forgotpassword" size="full">Mot de passe oublié</a>
-        </ion-card-content>
-      </ion-card>
+          
+          <div class="choice">
+             <p>Pas de compte? <a class="mb-3" [routerLink]="['/register']">
+                Cr&eacute;&eacute;z Un.
+             </a>
+            </p>
+            <p>Mot de passe oubli&eacute;?<a  class="mb-3"  routerLink="/forgotpassword">
+              R&eacute;initialisez-le.</a>
+            </p>
+          </div>
+          
     </form>
   </div>
 </ion-content>

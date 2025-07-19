@@ -51,7 +51,7 @@ export class LoginPage implements OnInit, AfterViewInit {
        
        if(user.username == "" || user.password=="")
        {
-         //this.message$("Les champs sont obligatoires");
+         this.message$=of("Les champs sont obligatoires");
        }
        else
        {  

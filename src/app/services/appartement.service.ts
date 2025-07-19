@@ -17,7 +17,7 @@ export class AppartementService {
             tap(()=>console.log("Test du service")),
             map((apps)=>{
                 console.log("Les appartements: "+apps)
-                return [];
+                return apps;
             }),
             catchError((err: HttpErrorResponse)=>{
                 

@@ -12,6 +12,8 @@ import { Router } from '@angular/router';
 })
 export class HomePage implements OnInit{
   username : any = sessionStorage.getItem("username");
+  apps: Appartement[]=[];
+
   constructor(private appService : AppartementService,
    private router: Router
   ) {}
@@ -21,10 +23,11 @@ export class HomePage implements OnInit{
   }
    
     listAppartementByUsername(): Observable<Appartement[]>{
-      console.log("dans home.ts");
         this.appService.getAllAppartementsByUsername(this.username).subscribe(
-           (data)=>{
-             console.log(data);
+           (data:any)=>{
+             this.apps=data.object;
+             this.apps.forEach(app=> console.log(app))
+             //console.log(this.apps)
            }
         );
         return of([]);

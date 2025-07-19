@@ -7,15 +7,19 @@ import { VideoAppartement } from "./video-appartement.model";
 export class Appartement{
     //id : number;
     description: string;
+    prix: number;
+    devise: string;
     adresse : Adresse;
     user : User;
     imgApp : ImageAppartement;
     videoApp: VideoAppartement;
     
-    constructor(description: string,adresse:Adresse, user:User,
+    constructor(description: string, prix: number, devise: string,adresse:Adresse, user:User,
         imagApp:ImageAppartement, videoApp:VideoAppartement){
         //this.id = id;
         this.description = description;
+        this.prix=prix;
+        this.devise=devise;
         this.adresse=adresse;
         this.user=user;
         this.imgApp=imagApp;
